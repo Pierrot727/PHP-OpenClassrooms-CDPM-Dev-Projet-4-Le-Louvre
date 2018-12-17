@@ -1,0 +1,16 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}Complétez les billet(s) choisie(s)!{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Billet</h1>
+            {{ dump(ticketsRequested) }}
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+        <input class="btn btn-primary" type="submit" value="Saisir vos billets">
+    </div>
+{% endblock %}

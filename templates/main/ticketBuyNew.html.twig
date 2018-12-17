@@ -1,0 +1,36 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}Achetez vos ticket(s)!{% endblock %}
+
+{% block body %}
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
+    <div class="container mt-4">
+        <h1>Choisissez votre jour</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Saisir vos billets">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.fr.js') }}"></script>
+    <script>
+        $('.js-datepicker').datepicker({
+            weekStart: 1,
+            language: "fr",
+            format: "yyyy-mm-dd",
+            daysOfWeekDisabled: [2, 0],
+            datesDisabled: ['2018-01-05', '2018-01-11', '2018-12-25']
+        });
+    </script>
+{% endblock %}
+
+
+
+
