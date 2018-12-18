@@ -44,10 +44,11 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    private $reduction;
+    private $reduction = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="Command", inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $command;
 
@@ -96,16 +97,26 @@ class Ticket
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
+    public function getBirthday(): ?\DateTime
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday($birthday): self
     {
+      //  $this->birthday = $birthday;
         $this->birthday = $birthday;
 
         return $this;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return int
+     */
+    public function getAge(\DateTime $date)
+    {
+        return date_diff($this->getBirthday(), $date)->y;
     }
 
     public function getPrice(): ?int

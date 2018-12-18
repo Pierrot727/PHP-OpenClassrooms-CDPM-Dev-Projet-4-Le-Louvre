@@ -4,7 +4,6 @@ namespace App\Validator;
 
 use App\Repository\CommandRepository;
 
-use DateTime;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -25,16 +24,13 @@ class NotFullCapacityValidator extends ConstraintValidator
     public function validate($object, Constraint $constraint)
     {
         //$selectedDate = $object->getDate();
-        $date = new DateTime('2018-12-06');
-      //  $selectedDay = $this->commandRepository->findOneBy(['date' => $date]) ;
-      //  dump($date);
-      //  dump($selectedDay);
-      //  die();
+        $selectedDay = $this->commandRepository->findOneBy(['date' => $object->getDate()]) ;
 
-        $ticketAlreadySell = $selectedDay->getNumber();
+        $ticketAlreadySell = $object->getNumber();
         $availableTickets = 1000 - $ticketAlreadySell;
 
         /* @var $constraint App\Validator\NotFullCapacity */
+
 
         if($object->getNumber() > $availableTickets){
 
@@ -43,6 +39,7 @@ class NotFullCapacityValidator extends ConstraintValidator
                 ->addViolation();
 
         }
+
     }
 
 

@@ -30,10 +30,7 @@ class CommandType extends AbstractType
             ->add('email', null, [
                 'label' => 'Votre Email (pour recevoir vos billets)'
             ])
-            ->add('number', CollectionType::class, array(
-                'entry_type' => TicketType::class,
-                'allow_add' => true
-            ));
+            ->add('number');
     }
 
     public function configureOptions(OptionsResolver $resolver)

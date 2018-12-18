@@ -47,4 +47,25 @@ class PriceRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+     * @param $age
+     * @param bool $proofNeeded
+     *
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function adjustPrice ($age, $proofNeeded = false)
+    {
+        $qb = $this->createQueryBuilder('q')
+            ->andWhere('q.minAge <= :age')
+            ->andWhere('q.maxAge > :age')
+            ->setParameter('age', $age)
+            ->andWhere('q.proof_needed = :proof_needed')
+            ->setParameter('proof_needed', $proofNeeded)
+            ->orderBy('p.price', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery();
+    return $qb->getSingleResult();
+    }
 }

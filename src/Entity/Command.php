@@ -13,9 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandRepository")
  * @LouvreAssert\NotFullCapacity()
+ * @LouvreAssert\NotAfter14hToday()
  */
 class Command
 {
+    const DURATION_HALF_DAY = true;
+    const DURATION_FULL_DAY = false;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -42,7 +45,6 @@ class Command
 
     /**
      * @ORM\Column(type="integer", nullable=false)
-     * @LouvreAssert\NotAfter14HToday()
      */
     private $price;
 
@@ -107,12 +109,12 @@ class Command
 
     public function setPrice(int $price): self
     {
-        foreach ($this->getTickets() as $ticket)
-        {
-            $total[] = $ticket->getPrice();
-        }
+//        foreach ($this->getTickets() as $ticket)
+//        {
+//            $total[] = $ticket->getPrice();
+//        }
 
-        $this->total = array_sum($total);
+        $this->price = $price;
 
         return $this;
     }
@@ -122,12 +124,12 @@ class Command
         return $this->code;
     }
 
-    public function setCode(): ?string
+    public function setCode(): self
     {
-        $dictionnary = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $codeCommand = "LOUVRE_MUSEUM_" . substr(str_shuffle($dictionnary), 0, rand(5,20));
+        $dictionary = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        /** @var string $dictionary */
+        $codeCommand = "LOUVRE_MUSEUM_" . substr(str_shuffle($dictionary), 0, rand(5,20));
         $this->code = $codeCommand;
-
         return $this;
     }
 

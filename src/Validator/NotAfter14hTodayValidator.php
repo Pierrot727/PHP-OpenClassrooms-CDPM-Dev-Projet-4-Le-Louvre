@@ -3,6 +3,7 @@
 namespace App\Validator;
 
 
+use App\Entity\Command;
 use App\Repository\ParametersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
@@ -17,18 +18,25 @@ class NotAfter14hTodayValidator extends ConstraintValidator
         $this->parameters = $parametersRepository;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($object, Constraint $constraint)
     {
         /* @var $constraint App\Validator\NotAfter14hToday */
+        $parameters = $this->parameters->findOneBy([]);
+        $halfDayTime = $parameters->getHalDayTime();
+        $now = \DateTime::createFromFormat('U', (string)time());
 
-            $parameters = $this->parameters->findAll();
-            $halfDayTime = $parameters->getHalDayTime();
+        if (!$object instanceof Command) {
+            return;
+        }
 
-            if($value->format('H') >= $halfDayTime)
-            {
-                $this->context->buildViolation($constraint->message)
-                    ->addViolation();
-            }
+        if ($object->getDate()->format('Y-m-d') == $now->format('Y-m-d') &&
+            $now->format('H') >= $halfDayTime &&
+            $object->getDuration() == Command::DURATION_HALF_DAY
+        ) {
+            $this->context->buildViolation($constraint->message)
+                ->atPath('date')
+                ->addViolation();
+        }
 
     }
 }

@@ -21,10 +21,10 @@ class TicketManager
     public function ticketsFormGenerator($numberOfTickets){
         //TODO: Generation du nombre de form adapté au nombre de tickets demandés lors de la commande
 
-        return false;
+
     }
 
-    public function ticketsRevelator($form) {
+    public function ticketsPriceGenerator($ticket) {
         //TODO: Exploitation du retour de tableau du formulaire
     }
 
