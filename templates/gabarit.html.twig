@@ -21,10 +21,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('home') }}">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {% if current_menu is defined and current_menu == 'ticket_buy' %}active{% endif %}"
-                   href="{{ path('ticket_buy') }}">Acheter vos billet(s)</a>
-            </li>
+            {% if reservation_allowed == true %}
+                <li class="nav-item">
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'command_new' %}active{% endif %}"
+                       href="{{ path('command_new') }}">Acheter vos billet(s)</a>
+                </li>
+            {% endif %}
 
         </ul>
     </div>
@@ -32,7 +34,6 @@
 
 {% block body %}{% endblock %}
 {% block javascripts %}
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>

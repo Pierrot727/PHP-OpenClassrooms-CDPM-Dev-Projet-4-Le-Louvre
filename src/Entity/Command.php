@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\CommandRepository;
 use App\Repository\ParametersRepository;
 use App\Validator as LouvreAssert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -109,11 +108,6 @@ class Command
 
     public function setPrice(int $price): self
     {
-//        foreach ($this->getTickets() as $ticket)
-//        {
-//            $total[] = $ticket->getPrice();
-//        }
-
         $this->price = $price;
 
         return $this;
@@ -186,12 +180,6 @@ class Command
         }
 
         return $this;
-    }
-
-    public function checkDate ($date, CommandRepository $commandRepository)
-    {
-        $selectedCommand = $commandRepository->findBy($date);
-
     }
 
     public function checkTime($time, ParametersRepository $parametersRepository) {

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -17,16 +18,16 @@ class TicketType extends AbstractType
             ->add('firstname', null, [
                 'label' => 'Prénom'
             ] )
-            ->add('lastname', CollectionType::class )
+            ->add('lastname', null )
             ->add('country', null,[
                 'label' => 'Pays'
             ] )
-            ->add('birthday', DateType::class, [
+            ->add('birthday', BirthdayType::class, [
                 'label' => 'Date de naissance'
             ] )
             //->add('price')
             ->add('reduction', null, [
-                'label' => 'Cochez içi si vous avez une réduction'
+                'label' => 'Cochez ici si vous avez une réduction'
             ] )
         ;
     }

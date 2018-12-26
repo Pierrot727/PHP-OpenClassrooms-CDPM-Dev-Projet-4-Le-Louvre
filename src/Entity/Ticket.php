@@ -111,12 +111,11 @@ class Ticket
     }
 
     /**
-     * @param \DateTime $date
      * @return int
      */
-    public function getAge(\DateTime $date)
+    public function getAge()
     {
-        return date_diff($this->getBirthday(), $date)->y;
+        return $this->getCommand()->getDate()->diff($this->getBirthday())->y;
     }
 
     public function getPrice(): ?int

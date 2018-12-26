@@ -5,11 +5,10 @@
 {% block body %}
     <div class="container mt-4">
         <h1>Billet</h1>
-
             {{ form_start(form) }}
             {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Saisir vos billets">
             {{ form_end(form) }}
 
-        <input class="btn btn-primary" type="submit" value="Saisir vos billets">
     </div>
 {% endblock %}

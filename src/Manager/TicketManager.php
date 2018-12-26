@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 
+
 use App\Repository\CommandRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -16,16 +17,6 @@ class TicketManager
     {
         $this->manager = $manager;
         $this->commandRepository = $commandRepository;
-    }
-
-    public function ticketsFormGenerator($numberOfTickets){
-        //TODO: Generation du nombre de form adapté au nombre de tickets demandés lors de la commande
-
-
-    }
-
-    public function ticketsPriceGenerator($ticket) {
-        //TODO: Exploitation du retour de tableau du formulaire
     }
 
 

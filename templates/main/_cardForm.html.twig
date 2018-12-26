@@ -1,0 +1,112 @@
+<form action="" method="POST" class="js-checkout-form checkout-form">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="fa fa-user"></i>
+                 </span>
+                <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name" required
+                       placeholder="Titulaire"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="fa fa-credit-card"></i>
+                 </span>
+                <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number"
+                       id="card-number" required placeholder="Numéro de carte"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="fa fa-calendar-o"></i>
+                 </span>
+                <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp"
+                       id="card-expiration" required="required" placeholder="Expiration mm/aa"/>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="fa fa-lock"></i>
+                 </span>
+                <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc"
+                       id="card-cvc" required="required" placeholder="CVC"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="fa fa-map-marker"></i>
+                 </span>
+                <input type="text" autocomplete="off" class="form-control" id="card-zip" placeholder="Zip"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8 col-sm-6 col-sm-offset-2 text-center">
+            <div class="alert alert-danger js-checkout-error hidden"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8 col-sm-6 col-sm-offset-2 text-center">
+            <button type="submit" class="js-submit-button btn btn-lg btn-primary">
+                Procéder au paiement
+            </button>
+        </div>
+    </div>
+
+</form>
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        Stripe.setPublishableKey('{{ stripe_public_key }}');
+
+        $(function () {
+            var $form = $('.js-checkout-form');
+            $form.submit(function (event) {
+                event.preventDefault();
+
+                // Disable the submit button to prevent repeated clicks:
+                $form.find('.js-submit-button').prop('disabled', true);
+
+                // Request a token from Stripe:
+                Stripe.card.createToken($form, stripeResponseHandler);
+
+            });
+        });
+
+        function stripeResponseHandler(status, response) {
+            // Grab the form:
+            var $form = $('.js-checkout-form');
+            if (response.error) { // Problem!
+                // Show the errors on the form:
+                $form.find('.js-checkout-error')
+                    .text(response.error.message)
+                    .removeClass('hidden');
+                $form.find('.js-submit-button').prop('disabled', false); // Re-enable submission
+            } else { // Token was created!
+                $form.find('.js-checkout-error')
+                    .addClass('hidden');
+
+                // Get the token ID:
+                var token = response.id;
+                // Insert the token ID into the form so it gets submitted to the server:
+                $form.append($('<input type="hidden" name="stripeToken">').val(token));
+                // Submit the form:
+                $form.get(0).submit();
+            }
+        }
+    </script>
+{% endblock %}

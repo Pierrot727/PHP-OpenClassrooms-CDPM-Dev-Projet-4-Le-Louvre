@@ -7,43 +7,66 @@ use App\Repository\CommandRepository;
 use App\Repository\ParametersRepository;
 use App\Repository\PriceRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use mysql_xdevapi\Exception;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CommandManager {
+class CommandManager
+{
     /**
      * @var EntityManagerInterface
      */
     private $manager;
+    /**
+     * @var PriceRepository
+     */
+    private $priceRepository;
 
-    public function __construct(EntityManagerInterface $manager, CommandRepository $commandRepository, ParametersRepository $parametersRepository, PriceRepository $priceRepository)
+    public function __construct(SessionInterface$session, EntityManagerInterface $manager, CommandRepository $commandRepository, ParametersRepository $parametersRepository, PriceRepository $priceRepository)
     {
+        $this->session = $session;
         $this->manager = $manager;
         $this->command = $commandRepository;
-        $this->price = $priceRepository;
         $this->parameter = $parametersRepository;
+
+        $this->priceRepository = $priceRepository;
     }
 
-    public function commandTotal($form) {
-        //TODO: fonction qui fait le total de la commande
+    public function initCommand ()
+    {
+        $command = new Command();
+        $session = $this->session->get('command');
+        if ($session) {
+            $this->session->clear();
+        }
+        return $command;
     }
 
     /**
-     * @param $ticket
-     * @return int
+     * @param Command $command
+     *
+     * @return float|int
+     * @throws \Exception
      */
-    public function getPricePerTicket(int $ticket) : int
+    public function priceGenerator(Command $command)
     {
-        $infoPrice = $this->price->findAll();
+        $total = 0;
+        foreach ($command->getTickets() as $ticket) {
+            $age = $ticket->getAge();
+            $proof = $ticket->getReduction();
 
-        $qb = $this->createQueryBuilder('q')
-            ->andWhere('q.age > :min_age')
-            ->andWhere('q.age < :max_age')
-            ->andWhere('q.proof_needed = :proof_needed')
-            ->setParameter('price', $price)
-            ->orderBy('p.price', 'DES')
-            ->getQuery();
+            try {
+                $ticketPrice = $this->priceRepository->adjustPrice($age, $proof);
+            } catch (NoResultException|NonUniqueResultException $e) {
+                throw new \Exception("Error priceGenerator ".$e->getMessage());
+            }
 
-        return $qb->execute();
-
+            $ticket->setPrice($ticketPrice);
+            $total += $ticketPrice;
+        }
+        $command->setPrice($total);
+        return $total;
     }
 
 

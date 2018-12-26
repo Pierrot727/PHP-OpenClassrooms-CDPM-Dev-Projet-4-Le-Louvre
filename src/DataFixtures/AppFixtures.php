@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Command;
 use App\Entity\Ticket;
+use App\Manager\ParametersManager;
 use DateTime;
 use App\Entity\Parameters;
 use App\Entity\Price;
@@ -13,21 +14,30 @@ use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager)
     {
         //Implémentation des tarifs de base fournit par le client
         $tarifNormal = new Price();
         $tarifNormal->setLabel("normal");
         $tarifNormal->setMinAge(12);
-        $tarifNormal->setMaxAge(null);
+        $tarifNormal->setMaxAge(59);
         $tarifNormal->setProofNeeded(false);
         $tarifNormal->setPrice(16);
         $manager->persist($tarifNormal);
 
+        $tarifBebe = new Price();
+        $tarifBebe->setLabel("bebe");
+        $tarifBebe->setMinAge(0);
+        $tarifBebe->setMaxAge(3);
+        $tarifBebe->setProofNeeded(false);
+        $tarifBebe->setPrice(8);
+        $manager->persist($tarifBebe);
+
         $tarifEnfant = new Price();
         $tarifEnfant->setLabel("enfant");
         $tarifEnfant->setMinAge(4);
-        $tarifEnfant->setMaxAge(12);
+        $tarifEnfant->setMaxAge(11);
         $tarifEnfant->setProofNeeded(false);
         $tarifEnfant->setPrice(8);
         $manager->persist($tarifEnfant);
@@ -35,15 +45,15 @@ class AppFixtures extends Fixture
         $tarifSenior = new Price();
         $tarifSenior->setLabel("senior");
         $tarifSenior->setMinAge(60);
-        $tarifSenior->setMaxAge(null);
+        $tarifSenior->setMaxAge(200);
         $tarifSenior->setProofNeeded(false);
         $tarifSenior->setPrice(12);
         $manager->persist($tarifSenior);
 
         $tarifReduit = new Price();
         $tarifReduit->setLabel("reduit");
-        $tarifReduit->setMinAge(null);
-        $tarifReduit->setMaxAge(null);
+        $tarifReduit->setMinAge(12);
+        $tarifReduit->setMaxAge(200);
         $tarifReduit->setProofNeeded(true);
         $tarifReduit->setPrice(10);
         $manager->persist($tarifSenior);
@@ -52,6 +62,7 @@ class AppFixtures extends Fixture
         $parameters = new parameters();
         $parameters->setHalfDayTime((new \DateTime())->setTime(14, 00, 00));
 
+        //Defaut setting de stripes dans /config/services.yaml
         $parameters->setStripeSecretKey(null);
         $parameters->setStripePublicKey(null);
         $parameters->setEmailCommand('test@test.com');
@@ -83,7 +94,7 @@ class AppFixtures extends Fixture
                 $ticket
                     ->setFirstname($faker->firstName)
                     ->setLastname($faker->lastName)
-                    ->setCountry($faker->country)
+                    ->setCountry($faker->countryCode)
                     ->setPrice($price)
                     ->setBirthday($faker->dateTimeThisCentury);
                 $command->addTicket($ticket);

@@ -58,14 +58,15 @@ class PriceRepository extends ServiceEntityRepository
     public function adjustPrice ($age, $proofNeeded = false)
     {
         $qb = $this->createQueryBuilder('q')
+            ->select('q.price')
             ->andWhere('q.minAge <= :age')
-            ->andWhere('q.maxAge > :age')
+            ->andWhere('q.maxAge >= :age')
             ->setParameter('age', $age)
-            ->andWhere('q.proof_needed = :proof_needed')
+            ->andWhere('q.proofNeeded = :proof_needed')
             ->setParameter('proof_needed', $proofNeeded)
-            ->orderBy('p.price', 'DESC')
+            ->orderBy('q.price', 'DESC')
             ->setMaxResults(1)
             ->getQuery();
-    return $qb->getSingleResult();
+    return $qb->getSingleScalarResult();
     }
 }
