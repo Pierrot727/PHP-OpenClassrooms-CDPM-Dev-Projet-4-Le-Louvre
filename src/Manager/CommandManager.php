@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\Command;
+use App\Entity\Ticket;
 use App\Repository\CommandRepository;
 use App\Repository\ParametersRepository;
 use App\Repository\PriceRepository;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CommandManager
 {
+    const COMMAND_SESSION_ID = 'command';
     /**
      * @var EntityManagerInterface
      */
@@ -22,6 +24,9 @@ class CommandManager
      * @var PriceRepository
      */
     private $priceRepository;
+    private $session;
+    private $command;
+    private $parameter;
 
     public function __construct(SessionInterface$session, EntityManagerInterface $manager, CommandRepository $commandRepository, ParametersRepository $parametersRepository, PriceRepository $priceRepository)
     {
@@ -29,17 +34,14 @@ class CommandManager
         $this->manager = $manager;
         $this->command = $commandRepository;
         $this->parameter = $parametersRepository;
-
         $this->priceRepository = $priceRepository;
     }
 
     public function initCommand ()
     {
         $command = new Command();
-        $session = $this->session->get('command');
-        if ($session) {
-            $this->session->clear();
-        }
+        $this->session = $this->session->set(self::COMMAND_SESSION_ID,$command);
+
         return $command;
     }
 
@@ -69,5 +71,25 @@ class CommandManager
         return $total;
     }
 
+    public function generateTicket($command){
+        for ($nbTickets = 1; $nbTickets <= $command->getNumber(); $nbTickets++) {
+            $command->addTicket(new Ticket());
+        }
+
+    }
+
+    public function getCurrentCommand() {
+        $session = $this->session;
+        return $command = $session->get('command');
+    }
+
+    public function setCommandInSession($command){
+        $session = $this->session;
+        return $session->set('command', $command);
+    }
+
+    public function recordSuccessfulCommand($command){
+
+    }
 
 }

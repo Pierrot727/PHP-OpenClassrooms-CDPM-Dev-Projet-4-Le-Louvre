@@ -72,6 +72,9 @@ class AppFixtures extends Fixture
         $manager->persist($parameters);
         $manager->flush();
 
+        //Remplissage des données de bases du site
+
+
         //Implémentation de 20 commandes dans la base pour tests avec faker
         //https://github.com/fzaninotto/Faker#
         $faker = Factory::create('fr_FR');
@@ -80,7 +83,7 @@ class AppFixtures extends Fixture
             $command
                 ->setDate($faker->dateTimeBetween($startDate = 'now', $endDate = '+5 years'))
                 ->setDuration(0)
-                ->setCode()
+                ->generateCode()
                 ->setEmail($faker->safeEmail)
                 ->setNumber($faker->numberBetween(1,10));
             $manager->persist($command);

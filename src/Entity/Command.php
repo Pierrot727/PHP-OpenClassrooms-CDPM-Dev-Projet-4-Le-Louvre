@@ -118,12 +118,20 @@ class Command
         return $this->code;
     }
 
-    public function setCode(): self
+    public function setCode($code): self
     {
-        $dictionary = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        /** @var string $dictionary */
-        $codeCommand = "LOUVRE_MUSEUM_" . substr(str_shuffle($dictionary), 0, rand(5,20));
-        $this->code = $codeCommand;
+
+        $this->code = $code;
+    }
+
+    public function generateCode(): self
+    {
+        if (!$this->code) {
+            $dictionary = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            /** @var string $dictionary */
+            $codeCommand = "LOUVRE_MUSEUM_" . substr(str_shuffle($dictionary), 0, rand(5, 20));
+            $this->code = $codeCommand;
+        }
         return $this;
     }
 
@@ -182,12 +190,13 @@ class Command
         return $this;
     }
 
-    public function checkTime($time, ParametersRepository $parametersRepository) {
+    public function checkTime($time, ParametersRepository $parametersRepository)
+    {
 
         $halfdaytime = $parametersRepository->findOneBy([]);
 
 
-        if ( $time < $halfdaytime) {
+        if ($time < $halfdaytime) {
             return false;
         } else {
             return true;

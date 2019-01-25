@@ -4,14 +4,29 @@
 
 {% block body %}
 
+    <div class="container mt-5"><h1>5 étapes facile pour votre commande!</h1></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="{{ path('home') }}"><img src="{{ asset('images/step/step1.png') }}" alt="Italian Trulli">Home</a>
+            </div>
+            <div class="col-sm-1">
+                <a href="#"><img src="{{ asset('images/step/step2.png') }}" alt="Italian Trulli">Choix de la date</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
     <div class="container mt-4">
-        <h1>Choisissez votre jour</h1>
+        <h2>Etape 1</h2>
+        <h2>Choisissez votre jour de visite</h2>
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <input class="btn btn-primary" type="submit" value="Saisir vos billets">
         {{ form_end(form) }}
     </div>
+    <div class="container "
 {% endblock %}
 
 {% block javascripts %}

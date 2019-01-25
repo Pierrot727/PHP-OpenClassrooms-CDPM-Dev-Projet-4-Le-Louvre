@@ -36,3 +36,4 @@ services:
         arguments:
             $stripeSecretKey: '%stripe_secret_key%'
             $stripePublicKey: '%stripe_public_key%'
+

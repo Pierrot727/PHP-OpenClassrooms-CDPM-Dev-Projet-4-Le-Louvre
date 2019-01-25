@@ -3,34 +3,158 @@
 {% block title %}Bienvenue au musée du Louvre!{% endblock %}
 
 {% block body %}
-    <div class="index-wrapper">
-        <h1>Le site du musée du Louvre ✅</h1>
 
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias amet beatae, commodi dolor earum
-            explicabo
-            laboriosam libero magni natus nihil officia porro, quaerat qui quia sint soluta, temporibus voluptas.
+    <!-- MAIN SLIDER START  -->
+
+    <div class="hero-area">
+        <!-- Start Hero Slider -->
+        <div class="slider-rev-cont">
+            <div class="tp-banner-container">
+                <div class="tp-banner">
+                    <ul style="display:none;">
+
+
+                        {% for slide in slides %}
+                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000"  data-saveperformance="off"  data-title="Slide 2">
+                            <img src="{{ asset('/images/mainCarousel/'~slide.image) }}"  alt="fullslide1"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <div class="tp-caption light_medium_20_shadowed sfb rtt tp-resizeme"
+                                 data-x="left" data-hoffset="20"
+                                 data-y="bottom" data-voffset="-80"
+                                 data-speed="600"
+                                 data-start="800"
+                                 data-easing="Power4.easeOut"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="500"
+                                 data-endeasing="Power4.easeIn"
+                                 style="z-index: 2; max-width: auto; max-height: auto; white-space: nowrap;">{{ slide.mainDescription }}
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption small_light_white sfb rtt tp-resizeme"
+                                 data-x="left" data-hoffset="20"
+                                 data-y="bottom" data-voffset="-50"
+                                 data-speed="600"
+                                 data-start="900"
+                                 data-easing="Power4.easeOut"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="500"
+                                 data-endeasing="Power4.easeIn"
+                                 style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;">{{ slide.secondaryDescription }}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tp-bannertimer" style="display:none;"></div>
+                </div>
+            </div>
         </div>
-        <div>Cupiditate facere nam natus qui saepe sapiente unde voluptatibus! Aliquid architecto assumenda consequatur
-            dignissimos dolorem, eos error fugit laboriosam molestiae nostrum officiis quidem quo ratione sapiente sint
-            sunt
-            voluptatum! Numquam.
+        <!-- End Hero Slider -->
+    </div>
+
+    <!-- MAIN SLIDER STOP  -->
+
+
+    <!-- BODY -->
+    <div class="notice-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-6">
+                    <p class="lead">Achetez vos billets dés à présent! <span class="col-md-5 fa fa fa-angle-double-right"></span></p>
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-5">
+                    <a href="{{ path('command_new') }}" class="btn btn-primary">Cliquez içi pour acheter vos billets!</a>
+                </div>
+            </div>
         </div>
-        <div>Accusantium beatae consectetur debitis eligendi in perspiciatis voluptatum. Aut fugiat fugit quam saepe.
-            Aut
-            culpa harum id illum minus neque nostrum, omnis perspiciatis, praesentium, sit sunt tempora velit veniam
-            voluptatum.
+    </div>
+    <!-- Start Body Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h3 class="widget-title">GET INVOLVED</h3>
+                        <p>We want you to be part of our museums, experience its beauty and this is why we offer several ways to let you engage with us to help maintain and develop the museums. Whether you are a student aspiring a career in social work or a business person who loves to preserve and care about the ocal history or a couple looking to get married in an awesome traditional way. We have everything for all of you. Become a member today!</p>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="featured-block">
+                            <figure>
+                                <a href="#">
+                                    <img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="Learn">
+                                    <span class="caption">Learn</span>
+                                </a>
+                            </figure>
+                            <p>The Vestige, museum of antiquity has a variety of year-round internship programs available for students of all ages.</p>
+                            <a href="#" class="basic-link">Inernship programs</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="featured-block">
+                            <figure>
+                                <a href="#">
+                                    <img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="Donate">
+                                    <span class="caption">Donate</span>
+                                </a>
+                            </figure>
+                            <p>Our memberships provide wonderful benefits and supports our goal to preserve and conserve our local history.</p>
+                            <a href="#" class="basic-link">Ways to support</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="featured-block">
+                            <figure>
+                                <a href="#">
+                                    <img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="Experience">
+                                    <span class="caption">Experience</span>
+                                </a>
+                            </figure>
+                            <p>Our beautiful historic properties are the ideal year-round location to host your wedding or special event.</p>
+                            <a href="#" class="basic-link">Rental options</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISITORS SAY -->
+            <div class="latest-testimonials accent-bg padding-tb45">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h2 class="light-title">Vos impressions nous interesse!</h2>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="2" data-autoplay="" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="2" data-items-desktop-small="3" data-items-tablet="1" data-items-mobile="1">
+                                    <li class="item">
+                                        <blockquote>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam .</p>
+                                            <cite>Ruth Lawson</cite>
+                                        </blockquote>
+                                    </li>
+                                    <li class="item">
+                                        <blockquote>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                            <cite>Hannah Hunter</cite>
+                                        </blockquote>
+                                    </li>
+                                    <li class="item">
+                                        <blockquote>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                            <cite>Teresa Barrett</cite>
+                                        </blockquote>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>Asperiores consequatur dolore eaque earum ex facere fuga, fugiat in modi nihil nobis non nulla odit, quo
-            reiciendis sint suscipit tempora ullam ut voluptatem. Ad culpa ducimus ipsam non ratione!
-        </div>
-        <div>A aperiam architecto, aspernatur aut deleniti dolorem explicabo, facere fugiat magnam magni minima,
-            perferendis
-            quaerat sed soluta ut. Aut dolores excepturi harum incidunt laboriosam, maxime omnis possimus quidem ut
-            voluptates.
-        </div>
-        <ul>
-            <li>ligne 1</li>
-            <li>Vers un lien <code><a href="{{ ''|file_link(0) }}">Le lien</a></code></li>
-        </ul>
     </div>
 {% endblock %}

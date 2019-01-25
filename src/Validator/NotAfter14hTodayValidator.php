@@ -11,10 +11,11 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class NotAfter14hTodayValidator extends ConstraintValidator
 {
-
-    public function __construct(EntityManagerInterface $manager, ParametersRepository $parametersRepository)
+    private $entityManager;
+    private $parameters;
+    public function __construct(EntityManagerInterface $entityManager, ParametersRepository $parametersRepository)
     {
-        $this->manager = $manager;
+        $this->entityManager = $entityManager;
         $this->parameters = $parametersRepository;
     }
 

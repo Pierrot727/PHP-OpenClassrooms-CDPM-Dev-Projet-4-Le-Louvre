@@ -1,47 +1,284 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/css/global.css') }}">
-    {% endblock %}
+    <!-- Basic Page Needs
+      ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+      ================================================== -->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!-- CSS
+      ================================================== -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/prettyphoto/js/prettyphoto.js') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/owl-carousel/css/owl.carousel.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/owl-carousel/css/owl.theme.css') }}" rel="stylesheet" type="text/css">
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" type="text/css" href=" css/ie.css" media="screen"/><![endif]-->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/extralayers.css') }}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/revslider/css/settings.css') }}" media="screen"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+
+    <!-- GOOGLE FONTS FOR REVOLUTION SLIDER ONLY -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,700,800,900' rel='stylesheet' type='text/css'/>
+    <!-- Color Style -->
+    <link href="{{ asset('colors/color11.css') }}" rel="stylesheet" type="text/css">
+    <!-- SCRIPTS
+      ================================================== -->
+    <script src="{{ asset('js/modernizr.js') }}"></script><!-- Modernizr -->
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="{{ path('home') }}">Le Louvre</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<body class="home header-style1">
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
+    today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better
+    experience this site.</p>
+<![endif]-->
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('home') }}">Home</a>
-            </li>
-            {% if reservation_allowed == true %}
-                <li class="nav-item">
-                    <a class="nav-link {% if current_menu is defined and current_menu == 'command_new' %}active{% endif %}"
-                       href="{{ path('command_new') }}">Acheter vos billet(s)</a>
-                </li>
-            {% endif %}
 
-        </ul>
+<!-- BODY
+  ================================================== -->
+<div class="body">
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9  col-sm-9">
+                    <p>Le musée est ouvert tous les jours sauf le mardi (et fermé les 1er mai, 1er novembre et 25 décembre). </p>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <ul class="pull-right social-icons-colored">
+                        <li class="facebook"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li class="flickr"><a href="#"><i class="fa fa-flickr"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
 
-{% block body %}{% endblock %}
-{% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
-{% endblock %}
+    <!-- Start Site Header -->
+    <div class="site-header-wrapper">
+        <header class="site-header">
+            <div class="container sp-cont">
+                <div class="site-logo">
+                    <h1><a href="{{ path('home') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a></h1>
+                </div>
+                <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                <!-- Main Navigation -->
+                <nav class="main-navigation dd-menu toggle-menu" role="navigation">
+                    <ul class="sf-menu">
+                        <li><a href="#">Home</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Header Styles</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Style 1 (Default)</a></li>
+                                        <li><a href="#">Style 2</a></li>
+                                        <li><a href="#">Style 3</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Slider Styles</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Slider Revolution</a></li>
+                                        <li><a href="#">FlexSlider</a></li>
+                                        <li><a href="#">NivoSlider</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">About</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Overview</a></li>
+                                <li><a href="#">Internship</a></li>
+                                <li><a href="#">Rentals</a></li>
+                                <li><a href="#">Donate</a></li>
+                                <li><a href="#">Membership</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- End Site Header -->
+    </div>
+
+
+    <!-- Start of body -->
+    {% block body %}
+    {% endblock %}
+    <!-- End of body -->
+
+
+    <!-- Start site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget footer-widget">
+                        <h4 class="widget-title">About our museum</h4>
+                        <img src="{{ asset('images/logo.png') }}" alt=""><br><br>
+                        <p>A visible trace, evidence, or sign of something that once existed but exists or appears no
+                            more: a building that is the area's last vestige of its colonial era. Lorem ipsum dolor sit
+                            amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis
+                            fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget footer-widget widget_links">
+                        <h4 class="widget-title">Navigation</h4>
+                        <ul>
+                            <li><a href="#">A propos de ce site</a></li>
+                            <li><a href="#">Devenir membre</a></li>
+                            <li><a href="#">Expositions</a></li>
+                            <li><a href="#">Evenements particuliers</a></li>
+                            <li><a href="#">Nous contacter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget footer-widget">
+                        <h4 class="widget-title">Our Venues</h4>
+                        <address>
+                            <a href="#"><strong>Accrue Homestead</strong></a><br>
+                            <span>158 Marion Street<br>
+							Columbia, SC 29201</span>
+                        </address>
+                        <hr>
+                        <address>
+                            <a href="#"><strong>Mehar Mansion</strong></a><br>
+                            <span>158 Marion Street<br>
+							Columbia, SC 29201</span>
+                        </address>
+                        <hr>
+                        <address>
+                            <a href="#"><strong>Shop Pleu</strong></a><br>
+                            <span>158 Marion Street<br>
+							Columbia, SC 29201</span>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget footer-widget">
+                        <h4 class="widget-title">Twitter Updates</h4>
+                        <div class="twitter-widget" data-tweets-count="2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 copyrights-left">
+                    <p>&copy;2019 Projet n°4 OpenClassrooms - Billeterie musée du Louvre. Tout droits réservés.</p>
+                </div>
+                <div class="col-md-6 col-sm-6 text-align-right">
+                    <a href="#"><p>Administration du site.</p></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End site footer -->
+    <a id="back-to-top"><i class="fa fa-chevron-up"></i></a>
+</div>
+<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> <!-- Jquery Library Call -->
+<script src="{{ asset('vendor/prettyphoto/js/prettyphoto.js') }}"></script> <!-- PrettyPhoto Plugin -->
+<script src="{{ asset('js/ui-plugins.js') }}"></script> <!-- UI Plugins -->
+<script src="{{ asset('js/helper-plugins.js') }}"></script> <!-- Helper Plugins -->
+<script src="{{ asset('vendor/owl-carousel/js/owl.carousel.min.js') }}"></script> <!-- Owl Carousel -->
+<script src="{{ asset('js/bootstrap.js') }}"></script> <!-- UI -->
+<script src="{{ asset('js/init.js') }}"></script> <!-- All Scripts -->
+<script src="{{ asset('vendor/flexslider/js/jquery.flexslider.js') }}"></script> <!-- FlexSlider -->
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+<script type="text/javascript" src="{{ asset('vendor/revslider/js/jquery.themepunch.tools.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/revslider/js/jquery.themepunch.revolution.min.js') }}"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('.tp-banner').show().revolution(
+            {
+                dottedOverlay: "none",
+                delay: 9000,
+                startwidth: 1060,
+                startheight: 500,
+                hideThumbs: 200,
+
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 5,
+
+                navigationType: "none",
+                navigationArrows: "solo",
+                navigationStyle: "preview2",
+
+                touchenabled: "on",
+                onHoverStop: "on",
+
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+
+
+                keyboardNavigation: "on",
+
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+
+                shadow: 0,
+                fullWidth: "on",
+                fullScreen: "off",
+
+                spinner: "spinner0",
+
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+
+                shuffle: "off",
+
+                autoHeight: "off",
+                forceFullWidth: "off",
+
+
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
+
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0
+            });
+    });	//ready
+</script>
 </body>
-
 </html>

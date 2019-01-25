@@ -9,3 +9,32 @@
     background: #F5F5F5;
     padding: 2px 6px;
 }
+
+/*====================
+    SEPARATEUR
+====================*/
+
+.checkout-header {
+    margin-bottom: 30px;
+}
+
+.table-margin {
+    margin-top: 50px;
+}
+
+.stripe-text {
+    margin-bottom: 20px;
+}
+
+.checkout-product-name {
+    font-weight: normal;
+}
+
+.checkout-total {
+    font-weight: bold;
+    text-align: center;
+}
+
+.checkout-form .input-group-addon:first-child {
+    min-width: 40px;
+}
