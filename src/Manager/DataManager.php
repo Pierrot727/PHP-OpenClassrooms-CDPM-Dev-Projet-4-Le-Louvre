@@ -18,10 +18,21 @@ class DataManager
         $this->carousel = $dataCarouselRepository;
         $this->dataCarousel = $this->carousel->findAll();
         $this->dataRepo = $dataRepository;
-        $this->data = $this->dataRepo->findOneBy([]);
     }
 
     public function mainCarousel() {
         return $this->carousel->findBy(['type' => 'mainCarousel']);
+    }
+
+    public function feedback() {
+        return $this->carousel->findBy(['type' => 'feedback']);
+    }
+
+    public function getInvolved() {
+        return $this->dataRepo->findOneBy(['position' => 'indexIntro']);
+    }
+
+    public function getInvolvedLeft() {
+        return $this->dataRepo->findOneBy(['position' => 'indexPart1']);
     }
 }

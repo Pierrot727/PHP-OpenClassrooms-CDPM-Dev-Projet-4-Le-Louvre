@@ -23,7 +23,6 @@ class TicketType extends AbstractType
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Date de naissance'
             ] )
-            //->add('price')
             ->add('reduction', null, [
                 'label' => 'Cochez ici si vous avez une réduction'
             ] )

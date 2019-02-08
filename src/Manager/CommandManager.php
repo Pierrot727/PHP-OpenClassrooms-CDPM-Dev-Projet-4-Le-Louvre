@@ -2,15 +2,13 @@
 
 namespace App\Manager;
 
+use App\Bridge\StripeBridge;
 use App\Entity\Command;
 use App\Entity\Ticket;
-use App\Repository\CommandRepository;
-use App\Repository\ParametersRepository;
 use App\Repository\PriceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use mysql_xdevapi\Exception;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CommandManager
@@ -19,28 +17,45 @@ class CommandManager
     /**
      * @var EntityManagerInterface
      */
-    private $manager;
+    private $entityManager;
     /**
      * @var PriceRepository
      */
     private $priceRepository;
     private $session;
-    private $command;
-    private $parameter;
+    /**
+     * @var StripeBridge
+     */
+    private $stripeBridge;
+    /**
+     * @var MailerManager
+     */
+    private $mailerManager;
 
-    public function __construct(SessionInterface$session, EntityManagerInterface $manager, CommandRepository $commandRepository, ParametersRepository $parametersRepository, PriceRepository $priceRepository)
+
+    /**
+     * CommandManager constructor.
+     *
+     * @param SessionInterface $session
+     * @param EntityManagerInterface $entityManager
+     * @param StripeBridge $stripeBridge
+     * @param PriceRepository $priceRepository
+     * @param MailerManager $mailerManager
+     */
+    public function __construct(SessionInterface $session, EntityManagerInterface $entityManager, StripeBridge $stripeBridge, PriceRepository $priceRepository, MailerManager $mailerManager)
     {
         $this->session = $session;
-        $this->manager = $manager;
-        $this->command = $commandRepository;
-        $this->parameter = $parametersRepository;
+
+        $this->stripeBridge = $stripeBridge;
         $this->priceRepository = $priceRepository;
+        $this->mailerManager = $mailerManager;
+        $this->entityManager = $entityManager;
     }
 
-    public function initCommand ()
+    public function initCommand()
     {
         $command = new Command();
-        $this->session = $this->session->set(self::COMMAND_SESSION_ID,$command);
+        $this->session = $this->session->set(self::COMMAND_SESSION_ID, $command);
 
         return $command;
     }
@@ -58,10 +73,11 @@ class CommandManager
             $age = $ticket->getAge();
             $proof = $ticket->getReduction();
 
+
             try {
                 $ticketPrice = $this->priceRepository->adjustPrice($age, $proof);
             } catch (NoResultException|NonUniqueResultException $e) {
-                throw new \Exception("Error priceGenerator ".$e->getMessage());
+                throw new \Exception("Error priceGenerator " . $e->getMessage());
             }
 
             $ticket->setPrice($ticketPrice);
@@ -71,25 +87,50 @@ class CommandManager
         return $total;
     }
 
-    public function generateTicket($command){
-        for ($nbTickets = 1; $nbTickets <= $command->getNumber(); $nbTickets++) {
-            $command->addTicket(new Ticket());
-        }
 
+    /**
+     * @param Command $command
+     *
+     * @throws \Exception
+     */
+    public function payment(Command $command){
+        if($this->stripeBridge->pay('Votre commnande louvre', $command->getPrice())){
+
+
+            $command->generateCode();
+            //$this->mailerManager->mailTo("pe.laporte@gmail.com", $command->getEmail(), "Votre commande de billet du musée du Louvre", "Toto");
+
+            // enregistrement en bdd
+        }else{
+            throw new \Exception();
+        }
     }
 
-    public function getCurrentCommand() {
+    public function generateTicket(Command $command)
+    {
+
+        while ($command->getNumber() != $command->getTickets()->count()) {
+            if ($command->getNumber() > $command->getTickets()->count()) {
+                $command->addTicket(new Ticket());
+            }
+            if ($command->getNumber() < $command->getTickets()->count()) {
+                $command->removeTicket($command->getTickets()->last());
+            }
+        }
+    }
+
+    public function getCurrentCommand()
+    {
         $session = $this->session;
         return $command = $session->get('command');
     }
 
-    public function setCommandInSession($command){
-        $session = $this->session;
-        return $session->set('command', $command);
+
+    public function recordSuccessfulCommand(Command $command)
+    {
+        $this->entityManager->persist($command);
+        $this->entityManager->flush();
     }
 
-    public function recordSuccessfulCommand($command){
-
-    }
 
 }

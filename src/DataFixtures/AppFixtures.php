@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Command;
+use App\Entity\DataCarousel;
 use App\Entity\Ticket;
 use App\Manager\ParametersManager;
 use DateTime;
@@ -11,6 +12,7 @@ use App\Entity\Price;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use phpDocumentor\Reflection\Types\Null_;
 
 class AppFixtures extends Fixture
 {
@@ -72,8 +74,42 @@ class AppFixtures extends Fixture
         $manager->persist($parameters);
         $manager->flush();
 
-        //Remplissage des données de bases du site
+        //Carousel page d'accueil
+        $dataCarousel = new DataCarousel();
+        $dataCarousel->setType('mainCarousel');
+        $dataCarousel->setImage('bigCarousel1.jpg');
+        $dataCarousel->setMainDescription('Musée du Louvre');
+        $dataCarousel->setSecondaryDescription('A la découverte des origines');
+        $dataCarousel->setText(null);
+        $dataCarousel->setLink(null);
+        $dataCarousel->setDuration(null);
 
+        $dataCarousel = new DataCarousel();
+        $dataCarousel->setType('mainCarousel');
+        $dataCarousel->setImage('bigCarousel2.jpg');
+        $dataCarousel->setMainDescription('Pyramide du Louvre');
+        $dataCarousel->setSecondaryDescription('Un miracle moderne');
+        $dataCarousel->setText(null);
+        $dataCarousel->setLink(null);
+        $dataCarousel->setDuration(null);
+
+        $dataCarousel = new DataCarousel();
+        $dataCarousel->setType('mainCarousel');
+        $dataCarousel->setImage('bigCarousel3.jpg');
+        $dataCarousel->setMainDescription('Les galeries à visiter');
+        $dataCarousel->setSecondaryDescription('Une architecture adapté');
+        $dataCarousel->setText(null);
+        $dataCarousel->setLink(null);
+        $dataCarousel->setDuration(null);
+
+        $dataCarousel = new DataCarousel();
+        $dataCarousel->setType('mainCarousel');
+        $dataCarousel->setImage('bigCarousel4.jpg');
+        $dataCarousel->setMainDescription('Un spectacle grandiose');
+        $dataCarousel->setSecondaryDescription(null);
+        $dataCarousel->setText(null);
+        $dataCarousel->setLink(null);
+        $dataCarousel->setDuration(null);
 
         //Implémentation de 20 commandes dans la base pour tests avec faker
         //https://github.com/fzaninotto/Faker#

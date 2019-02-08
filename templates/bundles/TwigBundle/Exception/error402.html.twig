@@ -1,0 +1,16 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}402 - Paiement requis!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="alert-danger">
+            Erreur 402 - Paiement requis.
+            <br>
+            Suite à de multiples essais, votre commande ne peut aboutir, merci de vérifier votre compte<br>
+            et/ou de réessayer ultérieurement.<br>
+            <br>
+            Pour revenir à la page d'acceuil, cliquez içi {{ path('home') }}
+        </div>
+    </div>
+{% endblock %}

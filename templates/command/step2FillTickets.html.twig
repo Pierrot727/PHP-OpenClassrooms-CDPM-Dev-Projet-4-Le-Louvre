@@ -1,0 +1,44 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}Complétez les billet(s) choisie(s)!{% endblock %}
+
+{% block body %}
+    <div class="container mt-5"><h1>5 étapes facile pour votre commande!</h1></div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="{{ path('home') }}"><img src="{{ asset('images/step/step1.png') }}" alt="Italian Trulli"></a>Home
+            </div>
+            <div class="col-sm-1">
+                <a href="{{ path('command_new') }}"><img src="{{ asset('images/step/step2.png') }}"
+                                                         alt="Italian Trulli">Choix de la date</a>
+            </div>
+            <div class="col-sm-1">
+                <a href="#"><img src="{{ asset('images/step/step3.png') }}" alt="Italian Trulli">Remplissez les tickets</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="container mt-4">
+        <h1>Billet</h1>
+        {{ form_start(form) }}
+        <div class="ticket_global">
+
+            {% for ticket in form.tickets %}
+                <div class="myTicket">
+                    <div class="row">
+                        <label for="myTicketCountry" class="col-sm-2 col-form-label text-align-right">xxxxx</label>
+                        {{ form_row(ticket.country, { 'attr': {'placeholder': '2 lettres', 'class': 'col-lg-2 col-md-2 col-sm-2 myTicketCountry ', 'id':'myTicketCountry'}}) }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <input class="btn btn-primary" type="submit" value="Saisir vos billets">
+            {{ form_end(form) }}
+        </div>
+
+
+    </div>
+{% endblock %}

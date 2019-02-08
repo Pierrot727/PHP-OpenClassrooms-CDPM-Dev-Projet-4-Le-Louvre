@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use App\Entity\Command;
 use App\Manager\ParametersManager;
 use App\Repository\CommandRepository;
 
@@ -15,6 +16,7 @@ class NotFullCapacityValidator extends ConstraintValidator
      * @var CommandRepository
      */
     private $commandRepository;
+    private $parameter;
 
     public function __construct(CommandRepository $commandRepository, ParametersManager $parametersManager)
     {
@@ -25,14 +27,11 @@ class NotFullCapacityValidator extends ConstraintValidator
 
     public function validate($object, Constraint $constraint)
     {
-       // $test = new \DateTime('2022-12-25 14:43:13');
-       // $testValue = $this->commandRepository->findOneBy(['date' => $test->format('d/m/y')]);
+        if(!$object instanceof Command){
+            throw new \LogicException();
+        }
 
-        $selectedDay = $this->commandRepository->findOneBy(['date' => $object]) ;
-        $dailyCapacity = $this->parameter->getDailyCapacity();
-
-
-
+       $nbTicketsSold = $this->commandRepository->countTickets($object->getDate()) ;
         $dailyCapacity = $this->parameter->getDailyCapacity();
 
 
@@ -40,7 +39,7 @@ class NotFullCapacityValidator extends ConstraintValidator
         /* @var $constraint App\Validator\NotFullCapacity */
 
 
-        if($object->getNumber() > 1000){
+        if(($object->getNumber()+$nbTicketsSold) > $dailyCapacity){
 
             $this->context->buildViolation($constraint->message)
                 ->atPath('number')

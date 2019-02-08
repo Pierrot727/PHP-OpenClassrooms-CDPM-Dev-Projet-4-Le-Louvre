@@ -1,0 +1,16 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}404 - Non trouvé!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="alert-danger">
+            Erreur 404 - Non trouvé.
+            <br>
+            Vous tentez d'accéder à une ressource qui n'est plus disponible ou<br>
+            qui a été déplacé.<br>
+            <br>
+            Pour revenir à la page d'acceuil, cliquez içi {{ path('home') }}
+        </div>
+    </div>
+{% endblock %}

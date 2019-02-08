@@ -1,0 +1,16 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}500 - Erreur serveur!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="alert-danger">
+            Erreur 500 - Erreur du serveur.
+            <br>
+            Une erreur coté serveur s'est produite, merci de réessayer ultérieurement<br>
+            Nous nous excusons de ce désagrément.<br>
+            <br>
+            Pour revenir à la page d'acceuil, cliquez ici {{ path('home') }}
+        </div>
+    </div>
+{% endblock %}

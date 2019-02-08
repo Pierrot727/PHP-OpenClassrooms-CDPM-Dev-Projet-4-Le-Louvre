@@ -49,6 +49,7 @@
                             </div>
                         </li>
                         {% endfor %}
+
                     </ul>
                     <div class="tp-bannertimer" style="display:none;"></div>
                 </div>
@@ -79,13 +80,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
-                        <h3 class="widget-title">GET INVOLVED</h3>
-                        <p>We want you to be part of our museums, experience its beauty and this is why we offer several ways to let you engage with us to help maintain and develop the museums. Whether you are a student aspiring a career in social work or a business person who loves to preserve and care about the ocal history or a couple looking to get married in an awesome traditional way. We have everything for all of you. Become a member today!</p>
+                        <h3 class="widget-title">{{ getInvolved.name }}</h3>
+                        <p>{{ getInvolved.text }}</p>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="featured-block">
                             <figure>
-                                <a href="#">
+                                <a href="a">
                                     <img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="Learn">
                                     <span class="caption">Learn</span>
                                 </a>
@@ -131,24 +132,14 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="2" data-autoplay="" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="2" data-items-desktop-small="3" data-items-tablet="1" data-items-mobile="1">
+                                    {% for feedback in feedbacks %}
                                     <li class="item">
                                         <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam .</p>
-                                            <cite>Ruth Lawson</cite>
+                                            <p>{{ feedback.text}}</p>
+                                            <cite>{{ feedback.mainDescription }}</cite>
                                         </blockquote>
                                     </li>
-                                    <li class="item">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                            <cite>Hannah Hunter</cite>
-                                        </blockquote>
-                                    </li>
-                                    <li class="item">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                            <cite>Teresa Barrett</cite>
-                                        </blockquote>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>

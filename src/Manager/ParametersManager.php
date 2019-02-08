@@ -62,4 +62,8 @@ class ParametersManager
         }
         return $this->stripePublicKey;
     }
+
+    public function getEmailFromCommand() {
+        return $this->values->getEmailCommand();
+    }
 }

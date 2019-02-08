@@ -1,0 +1,16 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}408 - Délai expiré!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="alert-danger">
+            Erreur 408 - Délai expiré.
+            <br>
+            Le délai d'attente a expiré, merci de réessayer ultérieurement<br>
+            et/ou de vérifier votre connection.<br>
+            <br>
+            Pour revenir à la page d'acceuil, cliquez içi {{ path('home') }}
+        </div>
+    </div>
+{% endblock %}

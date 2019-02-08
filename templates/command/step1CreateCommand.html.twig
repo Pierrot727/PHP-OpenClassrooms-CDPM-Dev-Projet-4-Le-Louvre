@@ -1,0 +1,93 @@
+{% extends ['gabarit.html.twig'] %}
+
+{% block title %}Nouvelle commande{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5"><h1>5 étapes facile pour votre commande!</h1></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="{{ path('home') }}"><img src="{{ asset('images/step/step1.png') }}"
+                                                  alt="Italian Trulli">Home</a>
+            </div>
+            <div class="col-sm-1">
+                <a href="#"><img src="{{ asset('images/step/step2.png') }}" alt="Italian Trulli">Choix de la date</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
+    <div class="container mt-4">
+        <h2>Etape 1</h2>
+        <h2>Choisissez votre jour de visite</h2>
+        {{ form_start(form) }}
+
+
+        <form>
+            <div class="form-row">
+                <div class="col-md-6 mb-6">
+                    <label for="validationServer01">Date de votre visite</label>
+                    {{ form_row(form.date) }}
+                    <div class="valid-feedback">
+                        Format valide
+                    </div>
+                </div>
+                <div class="col-md-6 mb-6">
+                    <label for="validationServer02">Quel sera le nombre de visiteur</label>
+                    {{ form_label(form.number) }}
+                    <div class="valid-feedback">
+                        Format valide
+                    </div>
+                </div>
+            </div>
+            div class="form-row">
+            <div class="col-md- mb-3">
+                <label for="validationServerUsername">Votre email</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                    </div>
+                    {{ form_label(form.email) }}
+
+                    <div class="invalid-feedback">
+                        Entrez un email valide
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <label for="validationServer02">Quel sera la durée de la visite</label>
+                {{ form_label(form.duration) }}
+                <div class="valid-feedback">
+                    Format valide
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Saisir vos billets">
+            {{ form_end(form) }}
+        </form>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.fr.js') }}"></script>
+    <script>
+        $('.js-datepicker').datepicker({
+            weekStart: 1,
+            language: "fr",
+            format: "yyyy-mm-dd",
+            daysOfWeekDisabled: [2, 0],
+            datesDisabled: ['2018-01-05', '2018-01-11', '2018-12-25']
+        });
+    </script>
+{% endblock %}
+
+
+
+

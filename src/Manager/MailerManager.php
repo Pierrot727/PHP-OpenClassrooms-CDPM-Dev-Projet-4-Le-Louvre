@@ -3,47 +3,72 @@
 namespace App\Manager;
 
 
+use App\Entity\Command;
+
 class MailerManager
 {
     private $templating;
     private $mailer;
+    private $from;
+    /**
+     * @var ParametersManager
+     */
+    private $parametersManager;
 
-    public function __construct(\Twig_Environment $templating, \Swift_Mailer $mailer)
+    public function __construct(\Twig_Environment $templating, \Swift_Mailer $mailer, ParametersManager $parametersManager)
     {
         $this->templating = $templating;
         $this->mailer = $mailer;
 
+        $this->parametersManager = $parametersManager;
     }
 
-    public function mailTo($from,$to,$object = null, $content = null)
+
+    public function sendConfirmationMail(Command $command)
     {
-        $message = (new \Swift_Message($object))
-            ->setFrom($from)
+        $this->mailTo($command->getEmail(), "Confirmation de votre commande", 'internal/mailGenerator.html.twig', ['command' =>$command]);
+        return $message = "success";
+    }
+
+
+    public function mailTo($to, $object, string $view, array $data)
+    {
+
+        $message = new \Swift_Message($object);
+        $cid = $message->embed(\Swift_Image::fromPath('images/logo.png'));
+        $data['cid'] = $cid;
+        $message
+            ->setFrom($this->parametersManager->getEmailFromCommand())
             ->setTo($to)
             ->setBody(
                 $this->templating->render(
-                // templates/emails/registration.html.twig
-                    'main/mail.html.twig', [
-                        'content' => $content
-                    ]
+                    $view, $data
                 ),
                 'text/html'
             );
 //            $attachment = \Swift_Attachment::fromPath('/path/to/logoLouvre.png', 'image/png');
 //            $message->attach($attachment);
 
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'emails/registration.txt.twig',
-                    array('name' => $name)
-                ),
-                'text/plain'
-            )
-            */
+        /*
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
 
 
         return $this->mailer->send($message);
     }
+
+    public function generateMailContent(Command $command) {
+
+        return $this->templating->render('internal/mailGenerator.html.twig', [
+            'command' => $command
+        ]);
+    }
+
 }

@@ -33,7 +33,7 @@ class Command
      * @LouvreAssert\Not01May()
      * @LouvreAssert\Not01Nov()
      * @LouvreAssert\Not25Dec()
-     *
+     * @LouvreAssert\NotUnrestrictedNumber()
      */
     private $date;
 
@@ -127,9 +127,9 @@ class Command
     public function generateCode(): self
     {
         if (!$this->code) {
-            $dictionary = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            $dictionary = "0123456789";
             /** @var string $dictionary */
-            $codeCommand = "LOUVRE_MUSEUM_" . substr(str_shuffle($dictionary), 0, rand(5, 20));
+            $codeCommand = substr(str_shuffle($dictionary), 0, 9);
             $this->code = $codeCommand;
         }
         return $this;

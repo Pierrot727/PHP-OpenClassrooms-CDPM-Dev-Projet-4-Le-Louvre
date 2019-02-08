@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Command;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -14,9 +16,29 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CommandRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private  $logger;
+
+    public function __construct(RegistryInterface $registry, LoggerInterface $logger)
     {
         parent::__construct($registry, Command::class);
+        $this->logger = $logger;
+
+    }
+
+    public function countTickets(?\DateTimeInterface $date)
+    {
+        // Equivalent au code SQL= SELECT COUNT(date) FROM command WHERE date="2020-12-28"
+
+        try {
+            return $this->createQueryBuilder('c')
+                ->select('count(c.date)')
+                ->andWhere('c.date = :val')
+                ->setParameter('val', $date)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NonUniqueResultException $e) {
+            $this->logger->error('Erreur requéte countTickets');
+        }
     }
 
     // /**

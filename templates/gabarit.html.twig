@@ -4,41 +4,59 @@
     <!-- Basic Page Needs
       ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Site du projet n°4 OpenClassrooms - Le louvre">
+    <meta name="keywords" content="Chef de projet multmédia, le louvre, projet 4">
+    <meta name="author" content="Pierre-emmanuel Laporte">
+
     <!-- Mobile Specific Metas
       ================================================== -->
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
+
     <!-- CSS
       ================================================== -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vendor/prettyphoto/js/prettyphoto.js') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vendor/owl-carousel/css/owl.carousel.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vendor/owl-carousel/css/owl.theme.css') }}" rel="stylesheet" type="text/css">
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" type="text/css" href=" css/ie.css" media="screen"/><![endif]-->
+    <link href="{{ asset('js/owl-carousel/css/owl.carousel.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('js/owl-carousel/css/owl.theme.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/global.css') }}" rel="stylesheet" type="text/css">
+
+    <!--[if lte IE 9] Prise en charge des reliques
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/ie.css') }}" media="screen"/>
+    <![endif]-->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
 
-    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <!-- SLIDER REVOLUTION 4.x (Landing page) -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/extralayers.css') }}" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/revslider/css/settings.css') }}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/revslider/css/settings.css') }}" media="screen"/>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 
-    <!-- GOOGLE FONTS FOR REVOLUTION SLIDER ONLY -->
+    <!-- Police GOOGLE FONTS pour REVOLUTION SLIDER -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'/>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,700,800,900' rel='stylesheet' type='text/css'/>
-    <!-- Color Style -->
-    <link href="{{ asset('colors/color11.css') }}" rel="stylesheet" type="text/css">
-    <!-- SCRIPTS
-      ================================================== -->
-    <script src="{{ asset('js/modernizr.js') }}"></script><!-- Modernizr -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,700,800,900' rel='stylesheet'
+          type='text/css'/>
+
+    <!-- CSS Dédié aux couleurs du théme -->
+    <link href="{{ asset('css/color.css') }}" rel="stylesheet" type="text/css">
+
+    <!--[if lte IE 9] Prise en charge des reliques
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Jura:400,700|Questrial|Inconsolata:400,700|Montserrat:900|Old+Standard+TT:700"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css'>
+
+
 </head>
+
+<!-- BODY
+  ================================================== -->
+
 <body class="home header-style1">
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
@@ -47,14 +65,13 @@
 <![endif]-->
 
 
-<!-- BODY
-  ================================================== -->
 <div class="body">
     <div class="topbar">
         <div class="container">
             <div class="row">
                 <div class="col-md-9  col-sm-9">
-                    <p>Le musée est ouvert tous les jours sauf le mardi (et fermé les 1er mai, 1er novembre et 25 décembre). </p>
+                    <p>Le musée est ouvert tous les jours sauf le mardi (et fermé les 1er mai, 1er novembre et 25
+                        décembre). </p>
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <ul class="pull-right social-icons-colored">
@@ -79,31 +96,15 @@
                 <!-- Main Navigation -->
                 <nav class="main-navigation dd-menu toggle-menu" role="navigation">
                     <ul class="sf-menu">
-                        <li><a href="#">Home</a>
+                        <li><a href="#">Accueil</a>
                             <ul class="dropdown">
-                                <li><a href="#">Header Styles</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Style 1 (Default)</a></li>
-                                        <li><a href="#">Style 2</a></li>
-                                        <li><a href="#">Style 3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Slider Styles</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Slider Revolution</a></li>
-                                        <li><a href="#">FlexSlider</a></li>
-                                        <li><a href="#">NivoSlider</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="#">Réserver un billet</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">About</a>
+                        <li><a href="#">Contact</a>
                             <ul class="dropdown">
-                                <li><a href="#">Overview</a></li>
-                                <li><a href="#">Internship</a></li>
-                                <li><a href="#">Rentals</a></li>
-                                <li><a href="#">Donate</a></li>
-                                <li><a href="#">Membership</a></li>
+                                <li><a href="#">Nous écrire</a></li>
+                                <li><a href="#">A propos de ce site</a></li>
                             </ul>
                         </li>
                         <li><a href="#">Contact</a></li>
@@ -111,14 +112,12 @@
                 </nav>
             </div>
         </header>
-        <!-- End Site Header -->
     </div>
+    <!-- End Site Header -->
 
 
-    <!-- Start of body -->
     {% block body %}
     {% endblock %}
-    <!-- End of body -->
 
 
     <!-- Start site footer -->
@@ -139,10 +138,8 @@
                     <div class="widget footer-widget widget_links">
                         <h4 class="widget-title">Navigation</h4>
                         <ul>
+                            <li><a href="#">Réserver un ticket</a></li>
                             <li><a href="#">A propos de ce site</a></li>
-                            <li><a href="#">Devenir membre</a></li>
-                            <li><a href="#">Expositions</a></li>
-                            <li><a href="#">Evenements particuliers</a></li>
                             <li><a href="#">Nous contacter</a></li>
                         </ul>
                     </div>
@@ -171,8 +168,8 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="widget footer-widget">
-                        <h4 class="widget-title">Twitter Updates</h4>
-                        <div class="twitter-widget" data-tweets-count="2"></div>
+                        <h4 class="widget-title">A remplir</h4>
+                        <div class=""></div>
                     </div>
                 </div>
             </div>
@@ -193,92 +190,99 @@
     <!-- End site footer -->
     <a id="back-to-top"><i class="fa fa-chevron-up"></i></a>
 </div>
-<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> <!-- Jquery Library Call -->
-<script src="{{ asset('vendor/prettyphoto/js/prettyphoto.js') }}"></script> <!-- PrettyPhoto Plugin -->
-<script src="{{ asset('js/ui-plugins.js') }}"></script> <!-- UI Plugins -->
-<script src="{{ asset('js/helper-plugins.js') }}"></script> <!-- Helper Plugins -->
-<script src="{{ asset('vendor/owl-carousel/js/owl.carousel.min.js') }}"></script> <!-- Owl Carousel -->
-<script src="{{ asset('js/bootstrap.js') }}"></script> <!-- UI -->
-<script src="{{ asset('js/init.js') }}"></script> <!-- All Scripts -->
-<script src="{{ asset('vendor/flexslider/js/jquery.flexslider.js') }}"></script> <!-- FlexSlider -->
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 
-<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-<script type="text/javascript" src="{{ asset('vendor/revslider/js/jquery.themepunch.tools.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/revslider/js/jquery.themepunch.revolution.min.js') }}"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        jQuery('.tp-banner').show().revolution(
-            {
-                dottedOverlay: "none",
-                delay: 9000,
-                startwidth: 1060,
-                startheight: 500,
-                hideThumbs: 200,
 
-                thumbWidth: 100,
-                thumbHeight: 50,
-                thumbAmount: 5,
-
-                navigationType: "none",
-                navigationArrows: "solo",
-                navigationStyle: "preview2",
-
-                touchenabled: "on",
-                onHoverStop: "on",
-
-                swipe_velocity: 0.7,
-                swipe_min_touches: 1,
-                swipe_max_touches: 1,
-                drag_block_vertical: false,
+{% block javascripts %}
+    <script src="{{ asset('js/modernizr.js') }}"></script><!-- Modernizr -->
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> <!-- Jquery Library Call -->
+    <script src="{{ asset('js/prettyphoto/js/prettyphoto.js') }}"></script> <!-- PrettyPhoto Plugin -->
+    <script src="{{ asset('js/ui-plugins.js') }}"></script> <!-- UI Plugins -->
+    <script src="{{ asset('js/helper-plugins.js') }}"></script> <!-- Helper Plugins -->
+    <script src="{{ asset('js/owl-carousel/js/owl.carousel.min.js') }}"></script> <!-- Owl Carousel -->
+    <script src="{{ asset('js/bootstrap.js') }}"></script> <!-- UI -->
+    <script src="{{ asset('js/init.js') }}"></script> <!-- All Scripts -->
+    <script src="{{ asset('js/flexslider/js/jquery.flexslider.js') }}"></script> <!-- FlexSlider -->
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 
-                keyboardNavigation: "on",
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script type="text/javascript" src="{{ asset('js/revslider/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/revslider/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('.tp-banner').show().revolution(
+                {
+                    dottedOverlay: "none",
+                    delay: 9000,
+                    startwidth: 1060,
+                    startheight: 500,
+                    hideThumbs: 200,
 
-                navigationHAlign: "center",
-                navigationVAlign: "bottom",
-                navigationHOffset: 0,
-                navigationVOffset: 20,
+                    thumbWidth: 100,
+                    thumbHeight: 50,
+                    thumbAmount: 5,
 
-                soloArrowLeftHalign: "left",
-                soloArrowLeftValign: "center",
-                soloArrowLeftHOffset: 20,
-                soloArrowLeftVOffset: 0,
+                    navigationType: "none",
+                    navigationArrows: "solo",
+                    navigationStyle: "preview2",
 
-                soloArrowRightHalign: "right",
-                soloArrowRightValign: "center",
-                soloArrowRightHOffset: 20,
-                soloArrowRightVOffset: 0,
+                    touchenabled: "on",
+                    onHoverStop: "on",
 
-                shadow: 0,
-                fullWidth: "on",
-                fullScreen: "off",
-
-                spinner: "spinner0",
-
-                stopLoop: "off",
-                stopAfterLoops: -1,
-                stopAtSlide: -1,
-
-                shuffle: "off",
-
-                autoHeight: "off",
-                forceFullWidth: "off",
+                    swipe_velocity: 0.7,
+                    swipe_min_touches: 1,
+                    swipe_max_touches: 1,
+                    drag_block_vertical: false,
 
 
-                hideThumbsOnMobile: "off",
-                hideNavDelayOnMobile: 1500,
-                hideBulletsOnMobile: "off",
-                hideArrowsOnMobile: "off",
-                hideThumbsUnderResolution: 0,
+                    keyboardNavigation: "on",
 
-                hideSliderAtLimit: 0,
-                hideCaptionAtLimit: 0,
-                hideAllCaptionAtLilmit: 0,
-                startWithSlide: 0
-            });
-    });	//ready
-</script>
+                    navigationHAlign: "center",
+                    navigationVAlign: "bottom",
+                    navigationHOffset: 0,
+                    navigationVOffset: 20,
+
+                    soloArrowLeftHalign: "left",
+                    soloArrowLeftValign: "center",
+                    soloArrowLeftHOffset: 20,
+                    soloArrowLeftVOffset: 0,
+
+                    soloArrowRightHalign: "right",
+                    soloArrowRightValign: "center",
+                    soloArrowRightHOffset: 20,
+                    soloArrowRightVOffset: 0,
+
+                    shadow: 0,
+                    fullWidth: "on",
+                    fullScreen: "off",
+
+                    spinner: "spinner0",
+
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+
+                    shuffle: "off",
+
+                    autoHeight: "off",
+                    forceFullWidth: "off",
+
+
+                    hideThumbsOnMobile: "off",
+                    hideNavDelayOnMobile: 1500,
+                    hideBulletsOnMobile: "off",
+                    hideArrowsOnMobile: "off",
+                    hideThumbsUnderResolution: 0,
+
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    startWithSlide: 0
+                });
+        });	//ready
+    </script>
+{% endblock %}
+
 </body>
 </html>

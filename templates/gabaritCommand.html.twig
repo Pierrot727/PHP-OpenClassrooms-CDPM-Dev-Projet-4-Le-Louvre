@@ -1,0 +1,57 @@
+{% extends ['gabarit.html.twig'] %}
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+<link rel="stylesheet" href="{{ asset('css/commandProcess.css') }}">
+
+
+<section class="design-process-section" id="process-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- design process steps-->
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
+                    <li role="presentation" class="active"><a href="#discover" aria-controls="discover" role="tab"
+                                                              data-toggle="tab"><i class="fa fa-search"
+                                                                                   aria-hidden="true"></i>
+                            <p>Créer votre commande</p>
+                        </a></li>
+                    <li role="presentation"><a href="#strategy" aria-controls="strategy" role="tab"
+                                               data-toggle="tab"><i class="fa fa-send-o" aria-hidden="true"></i>
+                            <p>Informations par billet</p>
+                        </a></li>
+                    <li role="presentation"><a href="#optimization" aria-controls="optimization" role="tab"
+                                               data-toggle="tab"><i class="fa fa-qrcode" aria-hidden="true"></i>
+                            <p>Vérifiez vos informations & régler</p>
+                        </a></li>
+                    <li role="presentation"><a href="#content" aria-controls="content" role="tab" data-toggle="tab"><i
+                                    class="fa fa-newspaper-o" aria-hidden="true"></i>
+                            <p>Régler</p>
+                        </a></li>
+                    <li role="presentation"><a href="#reporting" aria-controls="reporting" role="tab"
+                                               data-toggle="tab"><i class="fa fa-clipboard" aria-hidden="true"></i>
+                            <p>Reporting</p>
+                        </a></li>
+                </ul>
+                <!-- end design process steps-->
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active">
+                        <div class="design-process-content">
+                            {% block body %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src="{{ asset('js/commandProcess.js') }}"></script>
+
+
