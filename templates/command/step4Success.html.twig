@@ -1,31 +1,24 @@
-{% extends 'gabarit.html.twig' %}
+{% extends 'gabarit_command.html.twig' %}
 
 {% block title %}Commande terminée!{% endblock %}
 
-{% block body %}
+{% block command %}
 
-    <div class="container mt-5"><h1>Votre commande est à présent terminé!</h1></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-1">
-                <a href="{{ path('home') }}"><img src="{{ asset('images/step/step1.png') }}" alt="Italian Trulli">Home</a>
-            </div>
-            <div class="col-sm-1">
-                <a href="#"><img src="{{ asset('images/step/step2.png') }}" alt="Italian Trulli">Choix de la date</a>
-            </div>
-        </div>
-        <hr>
-    </div>
-    <div class="container">
-        Nous avons le plaisir de vous confirmer votre commande!<br>
+   <div class="container">
+       <div class="h1">Votre commande est à présent terminé!</div>
+       <br>
+       <img src="{{ asset('images/logo@2x.png') }}" alt="logo musée">
+       <br><br>
+        Nous avons le plaisir de vous confirmer votre commande!<br><br>
         Un email incluant vos billets a été envoyé sur votre boite mail<br>
-        Attention de penser à imprimer les billets avant de vous rendre au musée ou en avoir<br>
+        Attention de penser à imprimer les billets avant de vous rendre au musée ou en avoir
         la preuve electronique.<br>
         <br>
         Bonne visite !<br>
         <br>
         <a href="{{ path('home') }}">Cliquez ici pour revenir à l'acceuil!</a>
     </div>
+    <br>
 {% endblock %}
 
 {% block javascripts %}

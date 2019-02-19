@@ -31,7 +31,7 @@ class CommandRepository extends ServiceEntityRepository
 
         try {
             return $this->createQueryBuilder('c')
-                ->select('count(c.date)')
+                ->select('sum(c.number)')
                 ->andWhere('c.date = :val')
                 ->setParameter('val', $date)
                 ->getQuery()
@@ -41,32 +41,5 @@ class CommandRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Command[] Returns an array of Command objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Command
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

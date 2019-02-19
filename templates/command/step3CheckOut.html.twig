@@ -1,85 +1,63 @@
-{% extends 'gabarit.html.twig' %}
+{% extends 'gabarit_command.html.twig' %}
 
 {% block title %}Complétez les billet(s) choisie(s)!{% endblock %}
 
-{% block body %}
-    <div class="container mt-5"><h1>5 étapes facile pour votre commande!</h1></div>
+{% block command %}
+
+
     <div class="container">
+        <h1 class="checkout-header">Récapitulatif et paiement.</h1>
         <div class="row">
-            <div class="col-sm-1">
-                <a href="{{ path('home') }}"><img src="{{ asset('images/step/step1.png') }}" alt="Italian Trulli"></a>Home
-            </div>
-            <div class="col-sm-1">
-                <a href="{{ path('command_new') }}"><img src="{{ asset('images/step/step2.png') }}"
-                                                         alt="Italian Trulli">Choix de la date</a>
-            </div>
-            <div class="col-sm-1">
-                <a href="#"><img src="{{ asset('images/step/step3.png') }}" alt="Italian Trulli">Remplissez les tickets</a>
-            </div>
-            <div class="col-sm-1">
-                <a href="#"><img src="{{ asset('images/step/step4.png') }}" alt="Italian Trulli">Réglez votre
-                    commande</a>
-            </div>
-        </div>
-        <hr>
-    </div>
-    <div class="nav-space-checkout">
-        <div class="container">
-            <div class="col-xs-12 col-sm-12">
-                <h1 class="checkout-header">Récapitulatif et paiement.</h1>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-9">
-                    <table class="table table-bordered">
-                        <thead class="thead-light">
-                        <tr>
-                            <th colspan="6" class="col-xs-6 active">Billets</th>
-                        </tr>
+            <div class="col-xs-8 col-sm-8">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th colspan="6" class="col-xs-6 active"><b>Billets</b></th>
+                    </tr>
+                    <tr>
+                        <th scope="col-xs-3"><b>Nom</b></th>
+                        <th class="col-xs-3"><b>Prénom</b></th>
+                        <th class="col-xs-3 checkout-product-name"><b>Pay</b></th>
+                        <th class="col-xs-3 checkout-product-name"><b>Date de naissance</b></th>
+                        <th class="col-xs-3 checkout-product-name"><b>Reduction</b></th>
+                        <th class="col-xs-3"><b>Tarif</b></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for ticket in command.tickets %}
 
 
                         <tr>
-                            <th scope="col col-xs-3">Nom</th>
-                            <th class="col-xs-3"><b>Prénom</b></th>
-                            <th class="col-xs-3 checkout-product-name"><b>Pay</b></th>
-                            <th class="col-xs-3 checkout-product-name"><b>Date de naissance</b></th>
-                            <th class="col-xs-3 checkout-product-name"><b>Reduction</b></th>
-                            <th class="col-xs-3"><b>Tarif</b></th>
+
+                            <th class="col-xs-3 checkout-product-name">{{ ticket.firstname }}</th>
+                            <th class="col-xs-3">{{ ticket.lastname }}</th>
+                            <th class="col-xs-3 checkout-product-name">{{ ticket.country }}</th>
+                            <th class="col-xs-3 checkout-product-name">{{ ticket.birthday|date('d-m-Y') }}</th>
+                            <th class="col-xs-3 checkout-product-name">{{ ticket.reduction? "oui":"non" }}</th>
+                            <th class="col-xs-3">€ {{ ticket.price }}</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    {% endfor %}
 
-                        {% for ticket in command.tickets %}
-
-
-                            <tr>
-
-                                <th class="col-xs-3 checkout-product-name">{{ ticket.firstname }}</th>
-                                <th class="col-xs-3">{{ ticket.lastname }}</th>
-                                <th class="col-xs-3 checkout-product-name">{{ ticket.country }}</th>
-                                <th class="col-xs-3 checkout-product-name">{{ ticket.birthday|date('d-m-Y') }}</th>
-                                <th class="col-xs-3 checkout-product-name">{{ ticket.reduction? "oui":"non" }}</th>
-                                <th class="col-xs-3">€ {{ ticket.price }}</th>
-                            </tr>
-                        {% endfor %}
-
-                        <tr>
-                            <th colspan="5" class="col-xs-6 checkout-product-name">Quantité total de billet</th>
-                            <td class="col-xs-3">{{ command.number }}</td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th colspan="5" class="col-xs-6 table-info">Total</th>
-                            <td class="col-xs-3 table-info checkout-total">€ {{ command.price }}</td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                    <input type="checkbox" name="cgv" id="cgv" unchecked onclick="if(this.checked){check()}">En cochant cette case, vous acceptez les conditions de vente disponible en <a href="{{ asset('doc/CGV.pdf') }}">cliquant içi</a><br><br>
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                    {{ include('command/step3_paymentForm.html.twig') }}
-                    <br>
-                </div>
+                    <tr>
+                        <th colspan="5" class="col-xs-6 checkout-product-name">Quantité total de billet</th>
+                        <td class="col-xs-3">{{ command.number }}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="5" class="col-xs-6 table-info">Total</th>
+                        <td class="col-xs-3 table-info checkout-total">€ {{ command.price }}</td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <input type="checkbox" name="cgv" id="cgv" unchecked onclick="if(this.checked){check()}">En cochant
+                cette case, vous acceptez les conditions de vente disponible en <a href="{{ asset('doc/CGV.pdf') }}">cliquant
+                    içi</a><br><br>
+            </div>
+            <div class="col-xs-4 col-sm-4">
+                {{ include('command/step3_paymentForm.html.twig') }}
+                <br>
             </div>
         </div>
     </div>

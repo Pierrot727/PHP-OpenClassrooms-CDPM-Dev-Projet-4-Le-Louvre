@@ -1,0 +1,174 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}Bienvenue au musée du Louvre!{% endblock %}
+
+{% block body %}
+    <div class="hero-area">
+        <div class="page-header parallax" style="background-image:url({{ asset('images/aPropos.jpg') }})">
+            <div>
+                <div><span>A propos de ce site</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="notice-bar">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li class="active">A propos de ce site</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Start Body Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h4 class="accent-color short">Cahier des charges</h4>
+                        <br>
+                        <p>
+                            Le musée du Louvre vous a missionné pour un projet ambitieux : créer un nouveau système de
+                            réservation et de gestion des tickets en ligne pour diminuer les longues files d’attente et
+                            tirer parti de l’usage croissant des smartphones.
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            L’interface doit être accessible aussi bien sur ordinateur de bureau que tablettes et
+                            smartphones, et utiliser pour cela un design responsive.
+                            <br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            L’interface doit être fonctionnelle, claire et rapide avant tout. Le client ne souhaite pas
+                            surcharger le site d’informations peu utiles : l’objectif est de permettre aux visiteurs
+                            d’acheter un billet rapidement.
+                            <br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Il existe 2 types de billets : le billet « Journée » et le billet « Demi-journée » (il ne permet
+                            de rentrer qu’à partir de 14h00). Le musée est ouvert tous les jours sauf le mardi (et fermé les
+                            1er mai, 1er novembre et 25 décembre).
+                            Le musée propose plusieurs types de tarifs :
+                            <br>
+                        - Un tarif « normal » à partir de 12 ans à 16 €
+                        <br>
+                        - Un tarif « enfant » à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée est gratuite pour les
+                        enfants de moins de 4 ans)
+                        <br>
+                        - Un tarif « senior » à partir de 60 ans pour 12 €
+                        <br>
+                        - Un tarif « réduit » de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un
+                        service du Ministère de la Culture, militaire…)
+                        <br>
+                        <br>
+                        </p>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Pour commander, on doit sélectionner :
+                        <br>
+                        - Le jour de la visite
+                        <br>
+                        - Le type de billet (Journée, Demi-journée…). On peut commander un billet pour le jour même mais
+                        on ne peut plus commander de billet « Journée » une fois 14h00 passées.
+                        <br>
+                        - Le nombre de billets souhaités
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Le client précise qu’il n’est pas possible de réserver pour les jours passés (!), les dimanches,
+                            les jours fériés et les jours où plus de 1000 billets ont été vendus en tout pour ne pas
+                            dépasser la capacité du musée.<br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Pour chaque billet, l’utilisateur doit indiquer son nom, son prénom, son pays et sa date de
+                            naissance. Elle déterminera le tarif du billet.<br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Si la personne dispose du tarif réduit, elle doit simplement cocher la case « Tarif réduit ». Le
+                            site doit indiquer qu’il sera nécessaire de présenter sa carte d’étudiant, militaire ou
+                            équivalent lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit.<br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Le site récupèrera par ailleurs l’e-mail du visiteur afin de lui envoyer les billets. Il ne
+                            nécessitera pas de créer un compte pour commander..<br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Le visiteur doit pouvoir payer avec la solution Stripe par carte bancaire.<br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Le site doit gérer le retour du paiement. En cas d’erreur, il invite à recommencer l’opération.
+                            Si tout s’est bien passé, la commande est enregistrée et les billets sont envoyés au visiteur.<br>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="label label-primary">Objectif</span>
+                            Vous utiliserez les environnements de test fournis par Stripe pour simuler la transaction, afin
+                            de ne pas avoir besoin de rentrer votre propre carte bleue.<br>
+                        </p>
+                        <br>
+
+
+                        <div class="spacer-30"></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="icon-box">
+                                    <div class="ibox-icon">
+                                        <i class="fa fa-calendar-o"></i>
+                                    </div>
+                                    <h3>Programmation</h3>
+                                    <p>Symfony 4</p>
+                                    <p>Stripe</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="icon-box">
+                                    <div class="ibox-icon">
+                                        <i class="fa fa-paint-brush"></i>
+                                    </div>
+                                    <h3>Graphisme</h3>
+                                    <p>Boostrap 4</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="icon-box">
+                                    <div class="ibox-icon">
+                                        <i class="fa fa-image"></i>
+                                    </div>
+                                    <h3>Image</h3>
+                                    <p>Deposit photo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <section class="col-md-3">
+                        <div class="box-style1">
+                            <img src="{{ asset('/images/Pierre.jpg') }}" alt=""><br><br>
+                            <h4>Pierre-e. L.</h4>
+                            <br>
+                            <p>Ce projet a été développé dans le cadre du parcours OpenClassroom Chef de projet dévellopement.
+                                <br>Il est disponible sur Git</p>
+                            <br>
+                            <a href="https://github.com/Pierrot727/PHP-OpenClassrooms-CDPM-Dev-Projet-4-Le-Louvre" class="basic-link"><img src="{{ asset('images/Git-logo.svg') }}" alt="Logo Git" width="50" height="50"> - Depot Git</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="spacer-30"></div>
+    </div>
+{% endblock %}

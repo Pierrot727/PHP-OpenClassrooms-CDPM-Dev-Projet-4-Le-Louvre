@@ -1,0 +1,79 @@
+{% extends 'gabarit.html.twig' %}
+
+{% block title %}Bienvenue au musée du Louvre!{% endblock %}
+
+{% block body %}
+    <div class="hero-area">
+        <div class="page-header parallax"
+             style="background-image:url({{ asset('images/contact.jpg') }})">
+            <div>
+                <div><span>Ecrivez-nous!</span></div>
+            </div>
+        </div>
+    </div>
+    <!-- Notive Bar -->
+    <div class="notice-bar">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li class="active">Contact</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <h4 class="accent-color short">Merci de votre visite</h4>
+                        <h2>Nous aimerions connaitre votre expérience et vos suggestions</h2>
+                        <div class="spacer-20"></div>
+                        <form method="post" id="contactform" name="contactform" class="contact-form clearfix"
+                              action="mail/contact.php">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="text" id="fname" name="First Name" class="form-control input-lg"
+                                               placeholder="Prénom*">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="lname" name="Last Name" class="form-control input-lg"
+                                               placeholder="Nom">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" id="email" name="email" class="form-control input-lg"
+                                               placeholder="Email*">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <textarea cols="6" rows="8" id="comments" name="comments"
+                                                  class="form-control input-lg" placeholder="Message"></textarea>
+                                    </div>
+                                    <input id="submit" name="submit" type="submit"
+                                           class="btn btn-primary btn-lg pull-right" value="Envoyer!">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div id="message"></div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="widget sidebar-widget box-style1">
+                            <h3 class="widget-title">Notre adresse</h3>
+                            <address>
+                                <a href="venue-single.html"><strong>Musée du Louvre</strong></a><br>
+                                <span>Rue de Rivoli<br>
+                                75001 Paris, France</span>
+                            </address>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

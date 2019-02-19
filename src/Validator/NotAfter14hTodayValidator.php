@@ -31,7 +31,7 @@ class NotAfter14hTodayValidator extends ConstraintValidator
         }
 
         if ($object->getDate()->format('Y-m-d') == $now->format('Y-m-d') &&
-            $now->format('H') >= $halfDayTime &&
+            $now->format('H') >= $halfDayTime->format('H') &&
             $object->getDuration() == Command::DURATION_HALF_DAY
         ) {
             $this->context->buildViolation($constraint->message)

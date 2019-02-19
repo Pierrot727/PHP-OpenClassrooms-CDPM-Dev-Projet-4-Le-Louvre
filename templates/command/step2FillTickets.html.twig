@@ -1,44 +1,62 @@
-{% extends 'gabarit.html.twig' %}
+{% extends 'gabarit_command.html.twig' %}
 
 {% block title %}Complétez les billet(s) choisie(s)!{% endblock %}
 
-{% block body %}
-    <div class="container mt-5"><h1>5 étapes facile pour votre commande!</h1></div>
+{% block command %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/commandProcess.css') }}">
+
+
     <div class="container">
 
-        <div class="row">
-            <div class="col-sm-1">
-                <a href="{{ path('home') }}"><img src="{{ asset('images/step/step1.png') }}" alt="Italian Trulli"></a>Home
-            </div>
-            <div class="col-sm-1">
-                <a href="{{ path('command_new') }}"><img src="{{ asset('images/step/step2.png') }}"
-                                                         alt="Italian Trulli">Choix de la date</a>
-            </div>
-            <div class="col-sm-1">
-                <a href="#"><img src="{{ asset('images/step/step3.png') }}" alt="Italian Trulli">Remplissez les tickets</a>
-            </div>
+        <div class="py-5 text-center">
+            <h2>Créer votre commandez pour vos billets!</h2>
+            <p class="lead">Commandez vos billets pour le musée du Louvre. Au delà de 25 personnes, merci de contacter le
+                service client.</p>
         </div>
+
+        <h4 class="mb-3">Détail de votre visite...</h4>
         <hr>
-    </div>
-
-    <div class="container mt-4">
-        <h1>Billet</h1>
         {{ form_start(form) }}
-        <div class="ticket_global">
 
-            {% for ticket in form.tickets %}
-                <div class="myTicket">
-                    <div class="row">
-                        <label for="myTicketCountry" class="col-sm-2 col-form-label text-align-right">xxxxx</label>
-                        {{ form_row(ticket.country, { 'attr': {'placeholder': '2 lettres', 'class': 'col-lg-2 col-md-2 col-sm-2 myTicketCountry ', 'id':'myTicketCountry'}}) }}
-                    </div>
+        {% for ticket in form.tickets %}
+            <h4>Billet n°{{ loop.index }}</h4>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form_row(ticket.lastname, { 'label': 'Nom de famille' }) }}
                 </div>
-            {% endfor %}
+                <div class="col-sm-6">
+                    {{ form_row(ticket.firstname, { 'label': 'Prénom' }) }}
+                </div>
+            </div>
 
-            <input class="btn btn-primary" type="submit" value="Saisir vos billets">
-            {{ form_end(form) }}
-        </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <label for="reduction">Réduction</label>
+                    {{ form_row(ticket.reduction, { 'label': ' ', 'attr': {'class': 'reduction'} }) }}
+                </div>
+                <div class="col-sm-11">
+                    Si vous avez une réduction, merci de cocher cette case.
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-sm-3">
+                    {{ form_row(ticket.country, { 'label': 'Pay' }) }}
+                </div>
+                <div class="col-sm-9">
+                    {{ form_row(ticket.birthday, { 'label': 'Date de naissance' }) }}
+                </div>
+            </div>
 
+            <hr class="mt-4">
+
+        {% endfor %}
+
+        <input class="btn btn-primary" type="submit" value="Saisir vos billets">
+    {{ form_end(form) }}
+        <br>
     </div>
+
 {% endblock %}

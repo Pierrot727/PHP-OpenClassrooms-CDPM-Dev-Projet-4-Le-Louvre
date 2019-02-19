@@ -34,4 +34,37 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     *
+     * @param DataManager $data
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function contact(DataManager $data)
+    {
+
+
+
+        return $this->render('main/contact.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/aPropos", name="aPropos")
+     *
+     * @param DataManager $data
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function aPropos(DataManager $data)
+    {
+
+
+
+        return $this->render('main/aPropos.html.twig', [
+
+        ]);
+    }
+
 }

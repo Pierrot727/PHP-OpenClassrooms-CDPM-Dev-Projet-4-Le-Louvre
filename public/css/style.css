@@ -386,7 +386,6 @@ blockquote {
 }
 blockquote p {
     margin-bottom: 0;
-    white-space: 1px;
     line-height: 1.8em;
     font-style: italic;
     color: #999;
@@ -1742,7 +1741,6 @@ body .body {
     left: 100%!important;
     top: 0;
     min-width: 150px;
-    margin-left: ;
     position: absolute;
 }
 .dd-menu > ul > li > ul > li > ul {
@@ -3144,9 +3142,7 @@ ul.slot-exhibitions li h5 {
     top: -3px;
     left: -3px;
     box-shadow: 0 0 0 2px #252525;
-    -webkit-transition: 0 .3s, opacity .3s;
-    -webkit-transform: scale(.8);
-    -moz-transition: 0 .3s, opacity .3s;
+    -webkit-transform: scale(.8);;
     -moz-transform: scale(.8);
     -ms-transform: scale(.8);
     transition: transform .3s, opacity .3s;
@@ -3622,7 +3618,6 @@ ul.slot-exhibitions li h5 {
     .pricing-column.highlight {
         margin: 0;
     }
-    .pricing-table > div:third-child .pricing-column-content,
     .pricing-table > div:nth-child(2n+1) h3 {
         border-left: 1px solid #eeeeee!important;
     }

@@ -34,6 +34,7 @@ class NotFullCapacityValidator extends ConstraintValidator
        $nbTicketsSold = $this->commandRepository->countTickets($object->getDate()) ;
         $dailyCapacity = $this->parameter->getDailyCapacity();
 
+        dump($nbTicketsSold, $dailyCapacity, $object);
 
 
         /* @var $constraint App\Validator\NotFullCapacity */

@@ -28,12 +28,13 @@ class Command
     /**
      * @ORM\Column(type="datetime", nullable=false)
      * @Assert\GreaterThanOrEqual("today")
+     * @Assert\NotNull()
+     * @LouvreAssert\NotPublicHoliday()
      * @LouvreAssert\NotTuesday()
      * @LouvreAssert\NotSunday()
      * @LouvreAssert\Not01May()
      * @LouvreAssert\Not01Nov()
      * @LouvreAssert\Not25Dec()
-     * @LouvreAssert\NotUnrestrictedNumber()
      */
     private $date;
 
@@ -59,6 +60,7 @@ class Command
 
     /**
      * @ORM\Column(type="smallint", nullable=false)
+     * @LouvreAssert\NotUnrestrictedNumber()
      */
     private $number;
 

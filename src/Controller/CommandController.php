@@ -137,6 +137,7 @@ class CommandController extends AbstractController
 
 
         return $this->render('command/step4Success.html.twig', [
+            'current_menu' => 'command_success',
             'reservation_allowed' => $reservationAllowed
         ]);
     }

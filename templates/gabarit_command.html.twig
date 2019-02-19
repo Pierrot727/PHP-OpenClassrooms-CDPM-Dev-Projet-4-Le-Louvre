@@ -1,0 +1,60 @@
+{% extends ['gabarit.html.twig'] %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{{ asset('css/commandProcess.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+    <section class="design-process-section" id="process-tab">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
+                        <li role="presentation"
+                            {% if current_menu is defined and current_menu == 'command_new' %}class="active"{% endif %}>
+                            <i class="fa fa-file"
+                               aria-hidden="true"></i>
+                            <p>Créer</p>
+                        </li>
+                        <li role="presentation"
+                            {% if current_menu is defined and current_menu == 'command_fillTickets' %}class="active"{% endif %}>
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <p>Remplir</p>
+                        </li>
+                        <li role="presentation"
+                            {% if current_menu is defined and current_menu == 'command_checkout' %}class="active"{% endif %}>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <p>Vérifiez</p>
+                        </li>
+                        <li role="presentation"
+                            {% if current_menu is defined and current_menu == 'command_checkout' %}class="active"{% endif %}>
+                            <i class="fa fa-credit-card" aria-hidden="true"></i>
+                            <p>Régler</p>
+                        </li>
+                        <li role="presentation"
+                            {% if current_menu is defined and current_menu == 'command_success' %}class="active"{% endif %}>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <p>Terminé</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% block command %}
+    {% endblock %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/commandProcess.js') }}"></script>
+{% endblock %}
+
