@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Tests\Validator;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilder;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Violation\ConstraintViolationBuilder;
 /**
  * Class ValidatorTestAbstract.
  */
-abstract class ValidatorTestAbstract extends \PHPUnit_Framework_TestCase
+abstract class ValidatorTestAbstract extends TestCase
 {
     /**
      * Initialise le validateur.

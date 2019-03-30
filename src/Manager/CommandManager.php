@@ -5,10 +5,12 @@ namespace App\Manager;
 use App\Bridge\StripeBridge;
 use App\Entity\Command;
 use App\Entity\Ticket;
+use App\Exception\CommandNotFoundException;
 use App\Repository\PriceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Symfony\Component\Console\Exception\CommandNotFoundException as CommandNotFoundExceptionAlias;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CommandManager
@@ -94,13 +96,9 @@ class CommandManager
      * @throws \Exception
      */
     public function payment(Command $command){
-        if($this->stripeBridge->pay('Votre commnande louvre', $command->getPrice())){
-
-
+        $paid = $this->stripeBridge->pay('Votre commnande louvre', $command->getPrice());
+        if($paid == true){
             $command->generateCode();
-            //$this->mailerManager->mailTo("pe.laporte@gmail.com", $command->getEmail(), "Votre commande de billet du musée du Louvre", "Toto");
-
-            // enregistrement en bdd
         }else{
             throw new \Exception();
         }
@@ -119,10 +117,20 @@ class CommandManager
         }
     }
 
+    /**
+     * @return mixed
+     * @throws CommandNotFoundException
+     */
     public function getCurrentCommand()
     {
-        $session = $this->session;
-        return $command = $session->get('command');
+        $command = $this->session->get('command');
+        if(!$command instanceof Command){
+            throw new CommandNotFoundException('Pas de commande en cours!');
+        }
+
+        return $command;
+
+
     }
 
 

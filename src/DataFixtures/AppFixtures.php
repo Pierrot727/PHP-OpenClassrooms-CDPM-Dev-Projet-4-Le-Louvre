@@ -19,6 +19,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        //Paramétres d'initialisation - NE PAS ENLEVER
         //Implémentation des tarifs de base fournit par le client
         $tarifNormal = new Price();
         $tarifNormal->setLabel("normal");

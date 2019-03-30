@@ -7,7 +7,7 @@
                      <i class="fa fa-user"></i>
                  </span>
                 <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name" required
-                       placeholder="Titulaire"/>
+                       placeholder="Titulaire" name="cardName"/>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
                      <i class="fa fa-credit-card"></i>
                  </span>
                 <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number"
-                       id="card-number" required placeholder="Numéro de carte"/>
+                       id="card-number" required placeholder="Numéro de carte" name="cardNumber"/>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                      <i class="fa fa-calendar-o"></i>
                  </span>
                 <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp"
-                       id="card-expiration" required="required" placeholder="mm/aa"/>
+                       id="card-expiration" required="required" placeholder="mm/aa" name="cardMonth"/>
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 form-group">
@@ -40,7 +40,7 @@
                      <i class="fa fa-lock"></i>
                  </span>
                 <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc"
-                       id="card-cvc" required="required" placeholder="CVC"/>
+                       id="card-cvc" required="required" placeholder="CVC" name="cardCvc"/>
             </div>
         </div>
     </div>
@@ -56,11 +56,11 @@
             </div>
         </div>
     </div>
-    <div class="js-checkout-form">toto</div>
+    <div class="js-checkout-error"></div>
 
     <div class="row">
         <div class="col-xs-8 col-sm-6 col-sm-offset-2 text-center">
-            <button type="submit" id="payment" class="js-submit-button btn btn-lg btn-danger"  disabled>
+            <button type="submit" id="payment" class="js-submit-button btn btn-lg btn-danger"  >
                 Payer la commande
             </button>
         </div>

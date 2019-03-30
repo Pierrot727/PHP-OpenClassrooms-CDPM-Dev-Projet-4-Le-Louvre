@@ -6,11 +6,12 @@ Le musée du Louvre vous a missionné pour un projet ambitieux : créer un nouve
 
 Using:
 
-- Symfony 4
+- Symfony 4.2
 - Bootstrap 4
 - Doctrine
 - Fixtures
 - Faker
+- PhpUnit
 
 Dev: Pierre-emmanuel Laporte <br>
 Lead dev: Sébastien D.

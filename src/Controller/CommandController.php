@@ -108,7 +108,6 @@ class CommandController extends AbstractController
         }
 
         return $this->render('command/step3CheckOut.html.twig', [
-            'discount' => 0,
             'current_menu' => 'command_checkout',
             'reservation_allowed' => $reservationAllowed,
             'command' => $command,
@@ -140,20 +139,6 @@ class CommandController extends AbstractController
             'current_menu' => 'command_success',
             'reservation_allowed' => $reservationAllowed
         ]);
-    }
-
-    /**
-     * @Route("/command/sendMail", name="command_mail")
-     * @param MailerManager $mailerManager
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function sendMail(MailerManager $mailerManager, Command $command)
-    {
-
-        //$mailerManager->mailTo($command->getEmail(),"Confirmation de votre visite au musée du Louvre", 'main/mail.html.twig', $command->getTickets());
-
-        return $this->redirectToRoute('home');
     }
 
 }

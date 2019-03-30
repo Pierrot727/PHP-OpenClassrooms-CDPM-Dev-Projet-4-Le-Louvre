@@ -40,13 +40,14 @@ class StripeBridge
                 "source" => $token,
                 "description" => $description
             ));
-            $message = "successful command";
+            $paid = true;
 
 
         }catch (\Exception $e){
-            $message = "stripe error";
+            $paid = false;
         }
 
-        return $message;
+        return $paid;
     }
+
 }

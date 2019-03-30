@@ -46,19 +46,7 @@ class MailerManager
                 ),
                 'text/html'
             );
-//            $attachment = \Swift_Attachment::fromPath('/path/to/logoLouvre.png', 'image/png');
-//            $message->attach($attachment);
 
-        /*
-         * If you also want to include a plaintext version of the message
-        ->addPart(
-            $this->renderView(
-                'emails/registration.txt.twig',
-                array('name' => $name)
-            ),
-            'text/plain'
-        )
-        */
 
 
         return $this->mailer->send($message);

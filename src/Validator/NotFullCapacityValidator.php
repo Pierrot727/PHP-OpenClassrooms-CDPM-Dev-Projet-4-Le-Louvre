@@ -30,14 +30,15 @@ class NotFullCapacityValidator extends ConstraintValidator
         if(!$object instanceof Command){
             throw new \LogicException();
         }
+        if(!$constraint instanceof  NotFullCapacity){
+            throw new \LogicException();
+        }
+
 
        $nbTicketsSold = $this->commandRepository->countTickets($object->getDate()) ;
         $dailyCapacity = $this->parameter->getDailyCapacity();
 
-        dump($nbTicketsSold, $dailyCapacity, $object);
 
-
-        /* @var $constraint App\Validator\NotFullCapacity */
 
 
         if(($object->getNumber()+$nbTicketsSold) > $dailyCapacity){
